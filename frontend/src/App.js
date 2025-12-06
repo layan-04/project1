@@ -26,10 +26,10 @@ function App() {
   <div className="pages">
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/Chatbot" element={<Chatbot />} />
-      <Route path="/Passwordchecker" element={<PasswordChecker />} />
-      <Route path="/Login" element={<Login />} />
-      <Route path="/Signup" element={<Signup />} />
+      <Route path="/chatbot" element={<Chatbot />} />
+      <Route path="/passwordchecker" element={<PasswordChecker />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/auth" element={<AuthChoice />} />
       <Route path="/security-quiz" element={<SecurityQuiz />} />
       <Route path="/tools/url-scanner" element={<UrlScanner />} />
