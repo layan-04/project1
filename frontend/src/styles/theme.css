@@ -1,0 +1,37 @@
+:root {
+  /* Light/Earthy Theme (default) */
+  --bg-primary: linear-gradient(135deg, #f5f0e8 0%, #ebe4d9 100%);
+  --bg-secondary: #faf7f2;
+  --bg-white: #ffffff;
+  
+  --color-primary: #c87858;
+  --color-secondary: #7a9b76;
+  --color-text: #3d3229;
+  --color-text-light: #8a7a6a;
+  --color-text-muted: #a69684;
+  
+  --border-color: #d4c8b8;
+  --shadow: rgba(61, 50, 41, 0.15);
+  
+  --gradient-primary: linear-gradient(135deg, #c87858 0%, #b86848 100%);
+  --gradient-secondary: linear-gradient(135deg, #7a9b76 0%, #6a8b66 100%);
+}
+
+[data-theme="dark"] {
+  /* Dark Theme */
+  --bg-primary: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  --bg-secondary: #252525;
+  --bg-white: #333333;
+  
+  --color-primary: #ff9b7a;
+  --color-secondary: #98c794;
+  --color-text: #e8e8e8;
+  --color-text-light: #b8b8b8;
+  --color-text-muted: #888888;
+  
+  --border-color: #444444;
+  --shadow: rgba(0, 0, 0, 0.5);
+  
+  --gradient-primary: linear-gradient(135deg, #ff9b7a 0%, #ff7a5a 100%);
+  --gradient-secondary: linear-gradient(135deg, #98c794 0%, #78a774 100%);
+}

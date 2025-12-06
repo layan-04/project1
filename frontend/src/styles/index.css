@@ -1,0 +1,69 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+/* layout */
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+}
+
+body {
+  background: var(--bg-primary);
+  margin: 0;
+  font-family: "Poppins";
+  color: var(--color-text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+header {
+  background: var(--bg-white);
+}
+
+header .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header button {
+  background: var(--bg-white);
+  border: none;
+  font-size: 1em;
+  font-family: "Poppins";
+  cursor: pointer;
+  color: var(--color-text);
+  font-weight: bold;
+}
+
+header a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.pages {
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/* AuthChoice styles */
+.auth-choice {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.auth-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
