@@ -34,6 +34,7 @@ function App() {
       <Route path="/security-quiz" element={<SecurityQuiz />} />
       <Route path="/tools/url-scanner" element={<UrlScanner />} />
       <Route path="/feedback" element={<FeedbackForm />} />
+      <Route path="*" element={<h1>Page Not Found</h1>} />
     </Routes>
   </div>
 </BrowserRouter>
