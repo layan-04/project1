@@ -22,8 +22,8 @@ const Navbar = () => {
     {/* Navigation Links */}
     <nav className="nav-links">
       <Link to="/">Home</Link>
-      <Link to="/Chatbot">Chatbot</Link>
-      <Link to="/Passwordchecker">Password Strength</Link>
+      <Link to="/chatbot">Chatbot</Link>
+      <Link to="/passwordchecker">Password Strength</Link>
       <Link to="/tools/url-scanner">URL Checker</Link>
       <Link to="/security-quiz">Security Quiz</Link>
     </nav>
@@ -70,8 +70,8 @@ const Navbar = () => {
 
       {!user && (
         <div className="auth-links">
-          <Link to="/Login">Login</Link>
-          <Link to="/Signup">Sign up</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">Sign up</Link>
         </div>
       )}
     </div>
