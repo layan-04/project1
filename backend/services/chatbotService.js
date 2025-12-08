@@ -1,9 +1,11 @@
+//import natural library
 const natural = require('natural');
+
+//tokenizer will split the user's input into words
 const tokenizer = new natural.WordTokenizer();
 
-// =======================
-// Training Data
-// =======================
+
+//training data
 const trainingData = {
   greeting: ["hi", "hello", "hey", "good morning", "good evening"],
   password: ["password", "reset password", "strong password"],
@@ -17,9 +19,8 @@ const trainingData = {
   general_chat: ["who are you", "help me", "what can you do"]
 };
 
-// =======================
-// Responses
-// =======================
+
+//responses
 const responses = {
   greeting: "Hello! How can I help you today?",
   password: "You can reset your password from the account settings page. Always use a strong one!",
@@ -45,11 +46,11 @@ const responses = {
   general_chat: "I’m your cybersecurity assistant 🤖. Ask me anything about staying safe online!"
 };
 
-// =======================
-// CLASSIFIER SETUP
-// =======================
+
+//create a naive bayes classifier
 const classifier = new natural.BayesClassifier();
 
+//train the classifier, each phrase is mapped to its intent
 for (const intent in trainingData) {
   trainingData[intent].forEach(phrase => {
     classifier.addDocument(phrase.toLowerCase(), intent);
@@ -58,9 +59,7 @@ for (const intent in trainingData) {
 
 classifier.train();
 
-// =======================
-// KEYWORD DETECTION (STRICT WHOLE WORDS)
-// =======================
+//function to detect intent by exact keyword matching and uses regex which avoids substring issues
 function detectByKeywords(text) {
   const t = text.toLowerCase();
 
@@ -72,24 +71,22 @@ function detectByKeywords(text) {
     }
   }
 
-  return null; // no match
+  return null; //no match
 }
 
-// =======================
-// MAIN RESPONSE FUNCTION
-// =======================
+//function to process user input and return a response
 function getBotResponse(userInput) {
   const lower = userInput.toLowerCase();
   const tokens = tokenizer.tokenize(lower);
   const combined = tokens.join(" ");
 
-  // 1️⃣ Check keywords first
+//check keywords first
   let intent = detectByKeywords(lower);
 
-  // 2️⃣ If no keyword matched → fallback
+//if no keyword matched -> fallback response 
   if (!intent) return "Sorry, I don’t understand.";
 
-  // 3️⃣ Special logic for social engineering, phishing, malware
+//special logic for social engineering, phishing, malware
   if (intent === "social_engineering") {
     if (lower.includes("what is")) return responses.social_engineering.definition;
     if (lower.includes("avoid") || lower.includes("prevent")) return responses.social_engineering.prevention;
@@ -111,13 +108,11 @@ function getBotResponse(userInput) {
     return responses.malware.definition;
   }
 
-  // 4️⃣ Return general response
+//return general response
   return responses[intent] || "Sorry, I don’t understand.";
 }
 
-// =======================
-// Export
-// =======================
+//export functions to use in other modules
 module.exports = {
   getBotResponse,
   trainingData,
@@ -125,11 +120,4 @@ module.exports = {
   classifier
 };
 
-// =======================
-// Demo
-// =======================
-if (require.main === module) {
-  console.log(getBotResponse("how to avoid phishing")); // ✅ Phishing response
-  console.log(getBotResponse("hi there")); // ✅ Greeting
-  console.log(getBotResponse("tell me a joke")); // ✅ Sorry, I don’t understand.
-}
+
