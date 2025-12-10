@@ -8,7 +8,7 @@ const Home = () => {
       <div className="card-container">
         <div className="tool-card">
           <h3>💬 Cyber Awareness Chatbot</h3>
-          <p>Ask questions, simulate threats, and get instant security advice.</p>
+          <p>Ask questions, and get instant security advice.</p>
           <Link to="/chatbot">
             <button>Try Chatbot</button>
           </Link>
@@ -23,7 +23,7 @@ const Home = () => {
         </div>
 
         <div className="tool-card">
-          <h3>🧠 Security Quiz (Coming Soon)</h3>
+          <h3>🧠 Security Quiz</h3>
           <p>Challenge your knowledge and earn badges for cyber awareness.</p>
           <Link to="/security-quiz">
             <button>Take the Quiz</button>
@@ -31,8 +31,8 @@ const Home = () => {
         </div>
         
         <div className="tool-card">
-          <h3>URL Checker</h3>
-          <p>Check your URL.</p>
+          <h3>🛡️ URL Checker</h3>
+          <p>Verify if a URL is safe, suspicious, or potentially harmful before visiting.</p>
           <Link to="/url-scanner">
             <button>Check URL</button>
             </Link>
