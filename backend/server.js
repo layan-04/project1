@@ -28,8 +28,12 @@ const app = express()
 //needed to read JSON 
 app.use(express.json())
 
-//to accept request from any orgin
-app.use(cors())
+
+app.use(cors({
+  origin: 'https://project1-4-frontend.onrender.com/', // your deployed frontend URL
+  credentials: true, // if you are sending cookies or auth headers
+}));
+
 
 app.use((req, res, next) => {
     console.log(req.path, req.method)
