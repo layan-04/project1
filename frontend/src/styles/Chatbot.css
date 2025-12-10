@@ -325,3 +325,28 @@
 .chat-history li:hover .delete-icon {
   opacity: 1;
 }
+
+/* Mobile phones (≤768px) */
+@media screen and (max-width: 768px) {
+  .chatbot {
+    flex-direction: column; /* stack sidebar above chat window */
+    height: auto;           /* let content define height */
+  }
+
+  .chat-history {
+    width: 100%;            /* full width sidebar */
+    height: auto;           /* let it grow naturally */
+    border-right: none;
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  .chat-window {
+    width: 100%;
+    height: auto;
+    padding: 12px;
+  }
+
+  .messages {
+    max-height: 50vh;       /* prevent overflow */
+  }
+}
