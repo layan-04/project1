@@ -17,9 +17,9 @@ const Chatbot = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
+  // Fetch all conversations
   const viewConversations = useCallback(async () => {
     if (!user?.token) return;
-
     try {
       const res = await axios.get(`${API_URL}/chat`, {
         headers: { Authorization: `Bearer ${user.token}` },
@@ -30,12 +30,14 @@ const Chatbot = () => {
     }
   }, [user?.token]);
 
+  // Scroll to bottom when messages update
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [selectedConversation, chatMessages]);
 
+  // Redirect if not logged in
   useEffect(() => {
     if (!user) {
       navigate('/auth');
@@ -46,28 +48,40 @@ const Chatbot = () => {
 
   if (!user) return null;
 
+  // Send message function
   const sendMessage = async () => {
     if (userInput.trim() === '') return;
+
+    const messageToSend = userInput;
+    setUserInput(''); // Clear input immediately
 
     try {
       if (selectedConversation) {
         // Append to existing conversation
         const response = await axios.patch(
           `${API_URL}/chat/${selectedConversation._id}`,
-          { message: userInput },
+          { message: messageToSend },
           { headers: { Authorization: `Bearer ${user.token}` } }
         );
-        setSelectedConversation(response.data);
+
+        setSelectedConversation(prev => ({
+          ...prev,
+          messages: [
+            ...prev.messages,
+            { text: messageToSend, isUser: true },
+            { text: response.data.botResponse, isUser: false },
+          ],
+        }));
       } else {
-        // Create a new conversation
+        // Create new conversation
         const response = await axios.post(
           `${API_URL}/chat`,
-          { message: userInput },
+          { message: messageToSend },
           { headers: { Authorization: `Bearer ${user.token}` } }
         );
 
         const newConversation = {
-          _id: response.data.conversationId,
+          _id: response.data.conversationId || Date.now().toString(), // Temporary ID if backend doesn't return one
           topic: response.data.userMessage,
           messages: [
             { text: response.data.userMessage, isUser: true },
@@ -76,15 +90,18 @@ const Chatbot = () => {
         };
 
         setSelectedConversation(newConversation);
+        setChatMessages(newConversation.messages);
+
+        // Refresh conversation list from backend
         viewConversations();
       }
     } catch (error) {
       console.error('Error sending message', error);
+      alert('Failed to send message. Please check your connection or login status.');
     }
-
-    setUserInput('');
   };
 
+  // Group conversations by date
   const groupConversationsByDate = (convos) => {
     const groups = {};
     convos.forEach((chat) => {
@@ -101,6 +118,7 @@ const Chatbot = () => {
     return groups;
   };
 
+  // Delete conversation
   const deleteConversation = async (id) => {
     if (!id) return;
     try {
@@ -115,6 +133,7 @@ const Chatbot = () => {
     }
   };
 
+  // Start a new conversation
   const startNewConversation = () => {
     setSelectedConversation(null);
     setChatMessages([]);
@@ -137,7 +156,10 @@ const Chatbot = () => {
               {chats.map((chat) => (
                 <li
                   key={chat._id}
-                  onClick={() => setSelectedConversation(chat)}
+                  onClick={() => {
+                    setSelectedConversation(chat);
+                    setChatMessages(chat.messages || []);
+                  }}
                   className={selectedConversation?._id === chat._id ? 'selected' : ''}
                 >
                   <strong>{chat.topic || 'Untitled'}</strong>
@@ -164,7 +186,7 @@ const Chatbot = () => {
       {/* Chat Window */}
       <div className="chat-window">
         <div className="messages">
-          {(selectedConversation ? selectedConversation.messages : chatMessages).map((msg, index) => (
+          {chatMessages.map((msg, index) => (
             <div key={index} className={msg.isUser ? 'user' : 'bot'}>
               {msg.text}
             </div>
