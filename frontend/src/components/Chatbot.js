@@ -4,7 +4,7 @@ import '../styles/Chatbot.css';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
 
-// Full deployed backend URL
+// Full deployed backend URL including /api
 const BACKEND_URL = "https://project1-3-ow0y.onrender.com/api";
 
 const Chatbot = () => {
@@ -17,6 +17,7 @@ const Chatbot = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
+  // Fetch all conversations
   const viewConversations = useCallback(async () => {
     if (!user?.token) return;
     try {
@@ -29,12 +30,14 @@ const Chatbot = () => {
     }
   }, [user?.token]);
 
+  // Scroll to bottom when messages update
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [selectedConversation, chatMessages]);
 
+  // Redirect if not logged in
   useEffect(() => {
     if (!user) {
       navigate('/auth');
@@ -45,6 +48,7 @@ const Chatbot = () => {
 
   if (!user) return null;
 
+  // Send message
   const sendMessage = async () => {
     if (userInput.trim() === '') return;
 
@@ -68,6 +72,7 @@ const Chatbot = () => {
             { text: response.data.botResponse, isUser: false },
           ],
         }));
+
         setChatMessages(prev => [
           ...prev,
           { text: messageToSend, isUser: true },
@@ -101,6 +106,7 @@ const Chatbot = () => {
     }
   };
 
+  // Group conversations by date
   const groupConversationsByDate = (convos) => {
     const groups = {};
     convos.forEach((chat) => {
@@ -117,6 +123,7 @@ const Chatbot = () => {
     return groups;
   };
 
+  // Delete conversation
   const deleteConversation = async (id) => {
     if (!id) return;
     try {
@@ -131,6 +138,7 @@ const Chatbot = () => {
     }
   };
 
+  // Start new conversation
   const startNewConversation = () => {
     setSelectedConversation(null);
     setChatMessages([]);
