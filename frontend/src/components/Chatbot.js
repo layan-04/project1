@@ -4,8 +4,8 @@ import '../styles/Chatbot.css';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
 
-// ✅ Base API URL from .env
-const API_URL = process.env.REACT_APP_API_URL;
+// Full deployed backend URL
+const BACKEND_URL = "https://project1-3-ow0y.onrender.com/api";
 
 const Chatbot = () => {
   const [userInput, setUserInput] = useState('');
@@ -17,11 +17,10 @@ const Chatbot = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
-  // Fetch all conversations
   const viewConversations = useCallback(async () => {
     if (!user?.token) return;
     try {
-      const res = await axios.get(`${API_URL}/chat`, {
+      const res = await axios.get(`${BACKEND_URL}/chat`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setConversations(res.data);
@@ -30,14 +29,12 @@ const Chatbot = () => {
     }
   }, [user?.token]);
 
-  // Scroll to bottom when messages update
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [selectedConversation, chatMessages]);
 
-  // Redirect if not logged in
   useEffect(() => {
     if (!user) {
       navigate('/auth');
@@ -48,7 +45,6 @@ const Chatbot = () => {
 
   if (!user) return null;
 
-  // Send message function
   const sendMessage = async () => {
     if (userInput.trim() === '') return;
 
@@ -59,7 +55,7 @@ const Chatbot = () => {
       if (selectedConversation) {
         // Append to existing conversation
         const response = await axios.patch(
-          `${API_URL}/chat/${selectedConversation._id}`,
+          `${BACKEND_URL}/chat/${selectedConversation._id}`,
           { message: messageToSend },
           { headers: { Authorization: `Bearer ${user.token}` } }
         );
@@ -72,16 +68,21 @@ const Chatbot = () => {
             { text: response.data.botResponse, isUser: false },
           ],
         }));
+        setChatMessages(prev => [
+          ...prev,
+          { text: messageToSend, isUser: true },
+          { text: response.data.botResponse, isUser: false },
+        ]);
       } else {
         // Create new conversation
         const response = await axios.post(
-          `${API_URL}/chat`,
+          `${BACKEND_URL}/chat`,
           { message: messageToSend },
           { headers: { Authorization: `Bearer ${user.token}` } }
         );
 
         const newConversation = {
-          _id: response.data.conversationId || Date.now().toString(), // Temporary ID if backend doesn't return one
+          _id: response.data.conversationId || Date.now().toString(),
           topic: response.data.userMessage,
           messages: [
             { text: response.data.userMessage, isUser: true },
@@ -92,8 +93,7 @@ const Chatbot = () => {
         setSelectedConversation(newConversation);
         setChatMessages(newConversation.messages);
 
-        // Refresh conversation list from backend
-        viewConversations();
+        viewConversations(); // Refresh conversation list
       }
     } catch (error) {
       console.error('Error sending message', error);
@@ -101,7 +101,6 @@ const Chatbot = () => {
     }
   };
 
-  // Group conversations by date
   const groupConversationsByDate = (convos) => {
     const groups = {};
     convos.forEach((chat) => {
@@ -118,11 +117,10 @@ const Chatbot = () => {
     return groups;
   };
 
-  // Delete conversation
   const deleteConversation = async (id) => {
     if (!id) return;
     try {
-      await axios.delete(`${API_URL}/chat/${id}`, {
+      await axios.delete(`${BACKEND_URL}/chat/${id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       viewConversations();
@@ -133,7 +131,6 @@ const Chatbot = () => {
     }
   };
 
-  // Start a new conversation
   const startNewConversation = () => {
     setSelectedConversation(null);
     setChatMessages([]);
