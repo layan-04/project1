@@ -30,7 +30,7 @@ app.use(express.json())
 
 
 app.use(cors({
-  origin: 'https://project1-4-frontend.onrender.com/', // your deployed frontend URL
+  origin: 'https://www.cybershield-bh.com', // your deployed frontend URL
   credentials: true, // if you are sending cookies or auth headers
 }));
 
