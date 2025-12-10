@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSignup } from '../hooks/useSignup';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Signup.css';
 
@@ -7,14 +8,22 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signup, error, isLoading } = useSignup();
+  const { user } = useAuthContext();
   const navigate = useNavigate();
+
+  // ✅ Redirect immediately if user is already logged in
+  useEffect(() => {
+    if (user) {
+      navigate('/chatbot');
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const success = await signup(email, password);
     if (success) {
-      // ✅ Redirect to chatbot page after successful signup
+      // ✅ Navigate after successful signup
       navigate('/chatbot');
     }
   };
