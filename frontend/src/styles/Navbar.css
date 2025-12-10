@@ -30,6 +30,7 @@
 .nav-links {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -58,6 +59,7 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  flex-shrink: 0;
 }
 
 /* Hamburger Menu */
@@ -239,6 +241,7 @@
 .auth-links {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .auth-links a {
@@ -252,6 +255,7 @@
   font-size: 0.85em;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .auth-links a:first-child {
@@ -318,11 +322,30 @@
 @media (max-width: 768px) {
   .navbar .container {
     padding: 12px 16px;
+    flex-wrap: wrap;
   }
 
-  /* Hide desktop nav links on mobile */
+  /* Make nav links stack and take full width on mobile */
   .nav-links {
-    display: none;
+    flex-direction: column;
+    width: 100%;
+    order: 3;
+    gap: 0;
+    margin-top: 12px;
+  }
+
+  .nav-links a {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 0.85em;
+    letter-spacing: 1.5px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    clip-path: none;
+  }
+
+  .nav-links a:last-child {
+    border-bottom: 2px solid var(--border-color);
   }
 
   /* Reduce gap between controls */
@@ -331,6 +354,10 @@
   }
 
   /* Smaller auth buttons */
+  .auth-links {
+    gap: 8px;
+  }
+
   .auth-links a {
     padding: 10px 20px;
     font-size: 0.75em;
@@ -347,12 +374,13 @@
   /* Adjust dropdown position for smaller screens */
   .dropdown {
     min-width: 200px;
-    right: -10px;
+    right: 0;
   }
 
   .menu-dropdown {
     min-width: 200px;
-    left: -10px;
+    left: auto;
+    right: 0;
   }
 }
 
@@ -362,10 +390,17 @@
     padding: 10px 12px;
   }
 
+  /* Smaller nav links on mobile */
+  .nav-links a {
+    padding: 10px 12px;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+  }
+
   /* Stack auth links vertically on very small screens */
   .auth-links {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
 
   .auth-links a {
@@ -394,16 +429,16 @@
     padding: 8px;
   }
 
-  /* Full width dropdowns on very small screens */
-  .dropdown,
-  .menu-dropdown {
-    min-width: calc(100vw - 40px);
-    right: 10px;
-    left: 10px;
+  /* Better positioned dropdowns */
+  .dropdown {
+    min-width: 180px;
+    right: 0;
   }
 
   .menu-dropdown {
-    left: 10px;
+    min-width: 180px;
+    right: 0;
+    left: auto;
   }
 
   /* Adjust dropdown text */
@@ -435,6 +470,11 @@
     padding: 8px 10px;
   }
 
+  .nav-links a {
+    padding: 8px 10px;
+    font-size: 0.75em;
+  }
+
   .auth-links a {
     padding: 8px 12px;
     font-size: 0.65em;
@@ -454,5 +494,10 @@
 
   .right-controls {
     gap: 10px;
+  }
+
+  .dropdown,
+  .menu-dropdown {
+    min-width: 160px;
   }
 }
