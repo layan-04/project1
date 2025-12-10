@@ -35,7 +35,7 @@ const Chatbot = () => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
-  }, [selectedConversation, chatMessages]);
+  }, [chatMessages]);
 
   // Redirect if not logged in
   useEffect(() => {
@@ -56,6 +56,8 @@ const Chatbot = () => {
     setUserInput(''); // Clear input immediately
 
     try {
+      let botResponse = '';
+
       if (selectedConversation) {
         // Append to existing conversation
         const response = await axios.patch(
@@ -64,20 +66,20 @@ const Chatbot = () => {
           { headers: { Authorization: `Bearer ${user.token}` } }
         );
 
-        setSelectedConversation(prev => ({
-          ...prev,
-          messages: [
-            ...prev.messages,
-            { text: messageToSend, isUser: true },
-            { text: response.data.botResponse, isUser: false },
-          ],
-        }));
+        botResponse = response.data.botResponse;
 
-        setChatMessages(prev => [
-          ...prev,
+        const updatedMessages = [
+          ...chatMessages,
           { text: messageToSend, isUser: true },
-          { text: response.data.botResponse, isUser: false },
-        ]);
+          { text: botResponse, isUser: false },
+        ];
+
+        setChatMessages(updatedMessages);
+        setSelectedConversation({
+          ...selectedConversation,
+          messages: updatedMessages,
+        });
+
       } else {
         // Create new conversation
         const response = await axios.post(
@@ -97,8 +99,9 @@ const Chatbot = () => {
 
         setSelectedConversation(newConversation);
         setChatMessages(newConversation.messages);
+        botResponse = response.data.botResponse;
 
-        viewConversations(); // Refresh conversation list
+        viewConversations(); // Refresh sidebar
       }
     } catch (error) {
       console.error('Error sending message', error);
