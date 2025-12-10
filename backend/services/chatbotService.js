@@ -1,29 +1,33 @@
-//import natural library (it's a node.js nlp library which provides tokenizers and classifiers)
+//import natural library (tokenizers and classifiers)
 const natural = require('natural');
-
-//tokenizer will split the user's input into words (for example: "hello there" -> ["hello", "there"])
 const tokenizer = new natural.WordTokenizer();
 
-//training data (defines intents and each intent has example phrases)
+// Training data (keywords/intents)
 const trainingData = {
   greeting: ["hi", "hello", "hey", "good morning", "good evening"],
   password: ["password", "reset password", "strong password"],
   security_tips: ["security tips", "stay safe", "protect my account"],
-  two_factor: ["2fa", "two factor", "authentication"],
+  two_factor: ["2fa", "two factor", "authentication", "two-step"],
   social_engineering: ["social engineering", "hackers trick"],
   phishing: ["phishing", "fake email", "scam"],
   safe_browsing: ["safe browsing", "browse safely"],
   data_privacy: ["privacy", "protect my data"],
   malware: ["malware", "virus", "ransomware"],
+  vpn: ["vpn", "virtual private network", "private network"],
+  encryption: ["encryption", "encrypt", "secure data"],
   general_chat: ["who are you", "help me", "what can you do"]
 };
 
-//responses
+// Responses for each intent
 const responses = {
   greeting: "Hello! How can I help you today?",
   password: "You can reset your password from the account settings page. Always use a strong one!",
   security_tips: "Keep your software updated, enable 2FA, and avoid suspicious links.",
-  two_factor: "Two-factor authentication adds extra security. Enable it in your account settings.",
+  two_factor: {
+    definition: "Two-factor authentication (2FA) adds an extra layer of security to your accounts.",
+    tips: "Enable 2FA on all important accounts, preferably with an authenticator app instead of SMS.",
+    example: "Logging in with a password and then a code from Google Authenticator is 2FA."
+  },
   social_engineering: {
     definition: "Social engineering is when attackers trick people into giving away information.",
     prevention: "Never share sensitive information with people you don’t trust.",
@@ -41,87 +45,61 @@ const responses = {
     prevention: "Use antivirus software and avoid downloading unknown files.",
     removal: "Run a trusted antivirus scan to remove malware."
   },
+  vpn: {
+    definition: "A VPN encrypts your internet connection, hiding your activity from hackers and trackers.",
+    tips: "Use a reputable VPN provider, enable it on all devices, and avoid free VPNs with weak privacy policies.",
+    example: "For example, connecting to a VPN while on public Wi-Fi keeps your data safe from attackers."
+  },
+  encryption: {
+    definition: "Encryption converts data into a secure format that only authorized parties can read.",
+    tips: "Use end-to-end encryption for messaging apps, encrypt sensitive files, and use HTTPS websites.",
+    example: "WhatsApp messages are protected with end-to-end encryption."
+  },
   general_chat: "I’m your cybersecurity assistant 🤖. Ask me anything about staying safe online!"
 };
 
-//create a naive bayes classifier using natural library
+// Create a naive Bayes classifier
 const classifier = new natural.BayesClassifier();
-
-//loop through each intent in the training data for each phrase
 for (const intent in trainingData) {
   trainingData[intent].forEach(phrase => {
-    //add the phrase which is converted to lowercase to the classifier, mapped to its intent
     classifier.addDocument(phrase.toLowerCase(), intent);
   });
 }
-
-//train the classifier on all the added documents (phrases + intents)
 classifier.train();
 
-//function to detect intent by exact keyword matching and uses regex which avoids substring issues
+// Detect intent by keywords using regex
 function detectByKeywords(text) {
-  //converts text to lowercase
   const t = text.toLowerCase();
-
-  //loop through each intent in the training data
   for (const intent in trainingData) {
-    //loop through each phrase for the current intent
     for (const phrase of trainingData[intent]) {
-      //\b means "word boundary" (only match the word by itself)
-      //phrase.replace(...) makes sure symbols like + or ? are treated as normal characters
       const regex = new RegExp(`\\b${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
-      //test if the regex matches the input text
       if (regex.test(t)) return intent;
     }
   }
-
-  return null; //no keyword matched
+  return null;
 }
 
-//function to process user input and return a response
+// Function to get bot response
 function getBotResponse(userInput) {
-  //normalize input to lowercase
   const lower = userInput.toLowerCase();
-  //tokenize the input into words
   const tokens = tokenizer.tokenize(lower);
-  const combined = tokens.join(" ");
 
-  //check keywords first to detect intent
   let intent = detectByKeywords(lower);
-
-  //if no keyword matched -> fallback response 
   if (!intent) return "Sorry, I don’t understand.";
 
-  //special logic for social engineering, phishing, malware
-  if (intent === "social_engineering") {
-    if (lower.includes("what is")) return responses.social_engineering.definition;
-    if (lower.includes("avoid") || lower.includes("prevent")) return responses.social_engineering.prevention;
-    if (lower.includes("example")) return responses.social_engineering.examples;
-    //default return definition
-    return responses.social_engineering.definition;
+  // Special logic for structured responses
+  const structuredIntents = ["social_engineering", "phishing", "malware", "vpn", "two_factor", "encryption"];
+  if (structuredIntents.includes(intent)) {
+    const resp = responses[intent];
+    if (lower.includes("what is") || lower.includes("define")) return resp.definition;
+    if (lower.includes("tip") || lower.includes("prevent") || lower.includes("how to")) return resp.tips || resp.prevention;
+    if (lower.includes("example") || lower.includes("demo")) return resp.example || resp.examples;
+    return resp.definition; // default
   }
 
-  if (intent === "phishing") {
-    if (lower.includes("what is")) return responses.phishing.definition;
-    if (lower.includes("avoid") || lower.includes("prevent")) return responses.phishing.prevention;
-    if (lower.includes("example")) return responses.phishing.examples;
-    //default return definition
-    return responses.phishing.definition;
-  }
-
-  if (intent === "malware") {
-    if (lower.includes("what is")) return responses.malware.definition;
-    if (lower.includes("prevent")) return responses.malware.prevention;
-    if (lower.includes("remove")) return responses.malware.removal;
-    //default return definition
-    return responses.malware.definition;
-  }
-
-  //return general response
   return responses[intent] || "Sorry, I don’t understand.";
 }
 
-//export functions to use in other modules
 module.exports = {
   getBotResponse,
   trainingData,
