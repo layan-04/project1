@@ -24,7 +24,7 @@ const Home = () => {
 
         <div className="tool-card">
           <h3>🧠 Security Quiz</h3>
-          <p>Challenge your knowledge and earn badges for cyber awareness.</p>
+          <p>Challenge your knowledge, and see your score at the end.</p>
           <Link to="/security-quiz">
             <button>Take the Quiz</button>
             </Link>
