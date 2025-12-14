@@ -34,7 +34,7 @@ const FeedbackForm = () => {
 
     try {
       // Send POST request to backend feedback API
-      const response = await fetch('http://localhost:4000/api/feedback', {
+      const response = await fetch('https://project1-3-ow0y.onrender.com', {
         method: 'POST', // HTTP method
         headers: { 'Content-Type': 'application/json' }, // Send JSON data
         body: JSON.stringify(formData), // Request body with form data
