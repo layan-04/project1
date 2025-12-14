@@ -1,10 +1,44 @@
+/* =========================
+   Theme Variables
+   ========================= */
+
+/* Light Theme (default) */
+:root {
+  --bg-primary: linear-gradient(135deg, #f5f0e8 0%, #ebe4d9 100%);
+  --bg-secondary: #faf7f2;
+  --color-text: #3d3229;
+  --color-placeholder: #a69684;
+  --color-accent: #c87858;
+  --color-border: #d4c8b8;
+  --color-success: #6a8b66;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+    --bg-secondary: #333333;
+    --color-text: #f0f0f0;
+    --color-placeholder: #aaaaaa;
+    --color-accent: #d68868;
+    --color-border: #555555;
+    --color-success: #7a9b76;
+    --shadow: rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* =========================
+   Feedback Form Styles
+   ========================= */
+
 .feedback-form {
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
-  background: linear-gradient(135deg, #f5f0e8 0%, #ebe4d9 100%);
+  background: var(--bg-primary);
   border-radius: 0;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px var(--shadow);
   position: relative;
 }
 
@@ -15,13 +49,13 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, transparent 0%, #c87858 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--color-accent) 50%, transparent 100%);
 }
 
 .feedback-form h2 {
   margin: 0 0 24px 0;
   font-size: 1.5em;
-  color: #3d3229;
+  color: var(--color-text);
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -36,7 +70,7 @@
   left: 0;
   width: 80px;
   height: 3px;
-  background: #c87858;
+  background: var(--color-accent);
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
 
@@ -44,12 +78,12 @@
   padding: 14px 18px;
   margin-bottom: 20px;
   background: rgba(106, 139, 102, 0.15);
-  color: #6a8b66;
+  color: var(--color-success);
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 0.9em;
-  border-left: 3px solid #6a8b66;
+  border-left: 3px solid var(--color-success);
   clip-path: polygon(0 0, 100% 0, 100% 85%, 98% 100%, 0 100%);
   animation: slideIn 0.4s ease;
 }
@@ -79,7 +113,7 @@
 
 .feedback-form label {
   font-weight: 700;
-  color: #3d3229;
+  color: var(--color-text);
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 0.85em;
@@ -91,11 +125,11 @@
   width: 100%;
   padding: 14px 18px;
   border: none;
-  border-bottom: 3px solid #d4c8b8;
+  border-bottom: 3px solid var(--color-border);
   border-radius: 0;
   font-size: 1em;
-  background: #faf7f2;
-  color: #3d3229;
+  background: var(--bg-secondary);
+  color: var(--color-text);
   transition: all 0.3s ease;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 500;
@@ -105,14 +139,22 @@
 .feedback-form input:focus,
 .feedback-form textarea:focus {
   outline: none;
-  border-bottom-color: #c87858;
-  background: #ffffff;
+  border-bottom-color: var(--color-accent);
+  background: #ffffff; /* stays white in light mode */
   box-shadow: 0 4px 12px rgba(200, 120, 88, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .feedback-form input:focus,
+  .feedback-form textarea:focus {
+    background: #444444; /* dark mode focus background */
+    box-shadow: 0 4px 12px rgba(200, 120, 88, 0.4);
+  }
 }
 
 .feedback-form input::placeholder,
 .feedback-form textarea::placeholder {
-  color: #a69684;
+  color: var(--color-placeholder);
   font-weight: 400;
 }
 
@@ -127,7 +169,7 @@
   padding: 16px 18px;
   margin-top: 8px;
   border: none;
-  background: linear-gradient(135deg, #c87858 0%, #b86848 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, #b86848 100%);
   color: #ffffff;
   font-size: 1em;
   font-weight: 700;
@@ -141,7 +183,7 @@
 }
 
 .feedback-form button:hover {
-  background: linear-gradient(135deg, #d68868 0%, #c87858 100%);
+  background: linear-gradient(135deg, #d68868 0%, var(--color-accent) 100%);
   box-shadow: 0 6px 16px rgba(200, 120, 88, 0.4);
   transform: translateY(-2px);
 }
@@ -151,7 +193,10 @@
   box-shadow: 0 2px 8px rgba(200, 120, 88, 0.3);
 }
 
-/* Responsive Design */
+/* =========================
+   Responsive Design
+   ========================= */
+
 @media (max-width: 768px) {
   .feedback-form {
     padding: 30px 24px;
