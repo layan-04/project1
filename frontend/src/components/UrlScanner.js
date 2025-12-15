@@ -20,7 +20,7 @@ const UrlScannerForm = () => {
 
     try {
       // Send POST request to backend URL scanner API
-      const response = await fetch('http://localhost:4000/api/tools/url-scanner', {
+      const response = await fetch('https://project1-3-ow0y.onrender.com/api/tools/url-scanner', {
         method: 'POST', // Use POST method
         headers: { 'Content-Type': 'application/json' }, // Send JSON data
         body: JSON.stringify({ url }), // Request body with entered URL
