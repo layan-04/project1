@@ -145,9 +145,11 @@ function detectByKeywords(text) {
 
 // SPECIAL LOGIC HANDLING 
 function respondWithSpecialLogic(intent, lower, topic) {
-  if (lower.includes("what is")) return topic.definition;
+  if (lower.includes("what is") || lower.includes("what's") || lower.includes("what is")) return topic.definition;
   if (lower.includes("avoid") || lower.includes("prevent") || lower.includes("safe")) return topic.prevention;
-  if (lower.includes("example")) return topic.examples || "Here are some examples!";
+  if (lower.includes("example") || lower.includes("examples")) return topic.examples;
+  if (lower.includes("best practice") || lower.includes("best practices")) return topic.best_practices;
+  if (lower.includes("how to use") || lower.includes("use")) return topic.how_to_use;
   return topic.definition; // default
 }
 
