@@ -17,7 +17,7 @@ const Login = () => {
     // Redirect only if no error
     const user = JSON.parse(localStorage.getItem('user'))
       if (user) {
-        navigate('/chatbot')
+        navigate('/')
     }
   }
   return (
