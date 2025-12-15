@@ -1,7 +1,7 @@
 // Import React and useState hook for managing state
 import React, { useState } from 'react';
 // Import CSS file for styling the URL scanner form
-import '../styles/url.css'; // ✅ Import external CSS
+import '../styles/url.css'; // Import external CSS
 
 // Define UrlScannerForm component
 const UrlScannerForm = () => {
