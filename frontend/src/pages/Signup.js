@@ -14,7 +14,7 @@ const Signup = () => {
   // Redirect immediately if user is already logged in
   useEffect(() => {
     if (user) {
-      navigate('/chatbot');
+      navigate('/');
     }
   }, [user, navigate]);
 
@@ -24,7 +24,7 @@ const Signup = () => {
     const success = await signup(email, password);
     if (success) {
       // Navigate after successful signup
-      navigate('/chatbot');
+      navigate('/');
     }
   };
 
