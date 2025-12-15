@@ -1,8 +1,7 @@
-//import natural library
 const natural = require('natural');
 const tokenizer = new natural.WordTokenizer();
 
-// ===== TRAINING DATA (keywords the bot recognizes) =====
+// TRAINING DATA 
 const trainingData = {
   greeting: ["hi", "hello", "hey", "good morning", "good evening"],
 
@@ -21,7 +20,6 @@ const trainingData = {
 
   malware: ["malware", "virus", "ransomware"],
 
-  // NEW CONCEPTS
   firewall: ["firewall", "network wall"],
   password_manager: ["password manager", "store passwords", "manage passwords"],
   public_wifi: ["public wifi", "public wi-fi", "free wifi", "coffee shop wifi"],
@@ -32,7 +30,7 @@ const trainingData = {
   general_chat: ["who are you", "help me", "what can you do"]
 };
 
-// ===== RESPONSES =====
+// RESPONSES 
 const responses = {
   greeting: "Hello! How can I help you today?",
 
@@ -41,19 +39,19 @@ const responses = {
 
   two_factor: {
     definition: "Two-factor authentication adds extra security by requiring a second step to log in.",
-    prevention: "Enable 2FA on your major accounts (email, banking, social media).",
+    best_practices: "Enable 2FA on your major accounts (email, banking, social media).",
     examples: "SMS codes, authentication apps, fingerprint or face ID as the second step."
   },
 
   vpn: {
     definition: "A VPN encrypts your internet traffic and hides your IP address.",
-    prevention: "Use a VPN when using public Wi-Fi or accessing sensitive data.",
+    best_practices: "Use a VPN when using public Wi-Fi or accessing sensitive data.",
     examples: "NordVPN, ExpressVPN, ProtonVPN."
   },
 
   encryption: {
     definition: "Encryption protects your data by making it unreadable without a key.",
-    prevention: "Use apps with end-to-end encryption and encrypt important files.",
+    best_practices: "Use apps with end-to-end encryption and encrypt important files.",
     examples: "WhatsApp, Signal, encrypted ZIP files."
   },
 
@@ -78,35 +76,33 @@ const responses = {
     removal: "Run a trusted antivirus scan to remove malware."
   },
 
-  // ===== NEW RESPONSES =====
-
   firewall: {
     definition: "A firewall filters incoming and outgoing network traffic to block harmful activity.",
-    prevention: "Keep your firewall enabled on your router and computer.",
+    best_practices: "Keep your firewall enabled on your router and computer.",
     examples: "Windows Firewall, router firewalls, cloud firewalls."
   },
 
   password_manager: {
     definition: "A password manager securely stores all your passwords in one place.",
-    prevention: "Use a strong master password and enable 2FA.",
+    best_practices: "Use a strong master password and enable 2FA.",
     examples: "LastPass, 1Password, Bitwarden."
   },
 
   public_wifi: {
     definition: "Public Wi-Fi is often unsecured and attackers can intercept your data.",
-    prevention: "Avoid logging into accounts on public Wi-Fi, or use a VPN.",
+    best_practices: "Avoid logging into accounts on public Wi-Fi, or use a VPN.",
     examples: "Coffee shops, airports, malls."
   },
 
   https: {
     definition: "HTTPS encrypts data between your browser and the website.",
-    prevention: "Avoid entering passwords on sites without the padlock icon.",
+    best_practices: "Avoid entering passwords on sites without the padlock icon.",
     examples: "Banking websites, Google, YouTube all use HTTPS."
   },
 
   updates: {
     definition: "Software updates fix security vulnerabilities and bugs.",
-    prevention: "Enable automatic updates on your devices and apps.",
+    best_practices: "Enable automatic updates on your devices and apps.",
     examples: "iOS updates, Windows updates, browser updates."
   },
 
@@ -116,10 +112,10 @@ const responses = {
     examples: "Password guessing bots."
   },
 
-  general_chat: "I’m your cybersecurity assistant 🤖. Ask me anything about staying safe online!"
+  general_chat: "I’m your cybersecurity assistant 🤖. You can ask me about definitions, best practices, preventions, and examples about security topics to stay safe online!" 
 };
 
-// ===== TRAINING THE CLASSIFIER =====
+// TRAINING THE CLASSIFIER 
 const classifier = new natural.BayesClassifier();
 for (const intent in trainingData) {
   trainingData[intent].forEach(phrase =>
@@ -128,7 +124,7 @@ for (const intent in trainingData) {
 }
 classifier.train();
 
-// ===== KEYWORD DETECTION =====
+// KEYWORD DETECTION 
 function detectByKeywords(text) {
   const t = text.toLowerCase();
   for (const intent in trainingData) {
@@ -140,7 +136,7 @@ function detectByKeywords(text) {
   return null;
 }
 
-// ===== SPECIAL LOGIC HANDLING =====
+// SPECIAL LOGIC HANDLING 
 function respondWithSpecialLogic(intent, lower, topic) {
   if (lower.includes("what is")) return topic.definition;
   if (lower.includes("avoid") || lower.includes("prevent") || lower.includes("safe")) return topic.prevention;
@@ -148,7 +144,7 @@ function respondWithSpecialLogic(intent, lower, topic) {
   return topic.definition; // default
 }
 
-// ===== MAIN RESPONSE FUNCTION =====
+// MAIN RESPONSE FUNCTION 
 function getBotResponse(userInput) {
   const lower = userInput.toLowerCase();
   let intent = detectByKeywords(lower);
