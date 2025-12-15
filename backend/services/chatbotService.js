@@ -34,24 +34,27 @@ const trainingData = {
 const responses = {
   greeting: "Hello! How can I help you today?",
 
-  password: "You can reset your password from account settings. Always use a strong password!",
+  password: "Use a strong password with a combination of uppercase letters, lowercase letters, numbers, and symbols.",
   security_tips: "Keep software updated, enable 2FA, avoid suspicious links, and use strong passwords.",
 
   two_factor: {
     definition: "Two-factor authentication adds extra security by requiring a second step to log in.",
     best_practices: "Enable 2FA on your major accounts (email, banking, social media).",
-    examples: "SMS codes, authentication apps, fingerprint or face ID as the second step."
+    how_to_use: "Install an authenticator app, scan the QR code provided by the service, and confirm the code.",
+    examples: "SMS codes, authentication apps, fingerprint or face ID as the second step.",
   },
 
   vpn: {
     definition: "A VPN encrypts your internet traffic and hides your IP address.",
     best_practices: "Use a VPN when using public Wi-Fi or accessing sensitive data.",
+    how_to_use: "Download a VPN app, log in, and connect to a secure server before browsing.",
     examples: "NordVPN, ExpressVPN, ProtonVPN."
   },
 
   encryption: {
     definition: "Encryption protects your data by making it unreadable without a key.",
     best_practices: "Use apps with end-to-end encryption and encrypt important files.",
+    how_to_use: "Enable BitLocker or VeraCrypt for drives, or use built-in encryption options.",
     examples: "AES for file encryption, RSA for secure communication, TLS for HTTPS websites."
   },
 
@@ -79,24 +82,28 @@ const responses = {
   firewall: {
     definition: "A firewall filters incoming and outgoing network traffic to block harmful activity.",
     best_practices: "Keep your firewall enabled on your router and computer.",
+    how_to_use: "Enable the firewall in system settings and configure rules for apps or ports.",
     examples: "Windows Firewall, router firewalls, cloud firewalls."
   },
 
   password_manager: {
     definition: "A password manager securely stores all your passwords in one place.",
     best_practices: "Use a strong master password and enable 2FA.",
+    how_to_use: "Install a password manager, create a master password, and let it generate/store new ones.",
     examples: "LastPass, 1Password, Bitwarden."
   },
 
   public_wifi: {
     definition: "Public Wi-Fi is often unsecured and attackers can intercept your data.",
     best_practices: "Avoid logging into accounts on public Wi-Fi, or use a VPN.",
+    how_to_use: "Connect to a VPN before using public Wi-Fi, or avoid sensitive logins entirely.",
     examples: "Coffee shops, airports, malls."
   },
 
   https: {
     definition: "HTTPS encrypts data between your browser and the website.",
     best_practices: "Avoid entering passwords on sites without the padlock icon.",
+    how_to_use: "Check for the padlock icon in your browser before entering passwords or payment details.",
     examples: "Banking websites, Google, YouTube all use HTTPS."
   },
 
