@@ -52,7 +52,7 @@ const responses = {
   encryption: {
     definition: "Encryption protects your data by making it unreadable without a key.",
     best_practices: "Use apps with end-to-end encryption and encrypt important files.",
-    examples: "WhatsApp, Signal, encrypted ZIP files."
+    examples: "AES for file encryption, RSA for secure communication, TLS for HTTPS websites."
   },
 
   social_engineering: {
