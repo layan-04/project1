@@ -52,7 +52,7 @@ app.use('/api/tools/url-scanner', urlScanRoutes);
 app.get('/ping', async (req, res) => {
   // Optional: touch the database or any heavy service here
   // For example, run a lightweight query to keep DB connections alive
-  await db.query('SELECT 1');
+  await mongoose.connection.db.admin().ping();
   
   res.send('pong');
 });
