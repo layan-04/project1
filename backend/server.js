@@ -48,6 +48,16 @@ app.use('/api/feedback', feedbackRoutes); // Feedback endpoints
 // URL scanner route
 app.use('/api/tools/url-scanner', urlScanRoutes);
 
+// Simple warm-up endpoint
+app.get('/ping', async (req, res) => {
+  // Optional: touch the database or any heavy service here
+  // For example, run a lightweight query to keep DB connections alive
+  await db.query('SELECT 1');
+  
+  res.send('pong');
+});
+
+
 // Connect to MongoDB using the connection string in .env
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
