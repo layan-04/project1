@@ -2,7 +2,7 @@
 .navbar {
   background: var(--bg-primary);      /* Sets background color from your theme variables */
   border-bottom: 2px solid var(--border-color); /* Adds a subtle solid line at the bottom */
-  font-family: 'Segoe UI';       /* Clean, modern font stack */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;       /* Clean, modern font stack */
   position: relative;                 /* Necessary anchor for the glowing line below */
 }
 
