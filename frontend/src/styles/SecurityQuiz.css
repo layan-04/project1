@@ -87,6 +87,7 @@
 .option-button {
   width: 100%;
   padding: 16px 20px;
+  box-sizing: border-box;
   background: var(--bg-white);
   color: var(--color-text);
   border: 2px solid var(--border-color);
