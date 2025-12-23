@@ -25,16 +25,20 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 16px 24px;
-  flex-wrap: nowrap; /* ✅ keep everything in one line on desktop */
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  white-space: nowrap;
 }
 
 /* ============================================
-   NAVIGATION LINKS
+   NAVIGATION LINKS (Desktop Only)
    ============================================ */
 .nav-links {
   display: flex;
   gap: 12px;
-  flex-wrap: nowrap; /* ✅ no wrapping on desktop */
 }
 
 .nav-links a {
@@ -42,17 +46,10 @@
   color: var(--color-text);
   font-weight: 600;
   font-size: 0.9em;
-  padding: 12px 24px;
+  padding: 12px 18px;
   transition: all 0.2s ease;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  border-bottom: 3px solid transparent;
-}
-
-.nav-links a:hover {
-  border-bottom-color: var(--color-primary);
-  transform: translateY(-2px);
-  background: rgba(200, 120, 88, 0.08);
+  letter-spacing: 1px;
 }
 
 /* ============================================
@@ -61,406 +58,90 @@
 .right-controls {
   display: flex;
   align-items: center;
-  gap: 24px;
-  flex-shrink: 0;
-  flex-wrap: nowrap; /* ✅ keep controls inline */
+  gap: 15px;
 }
 
-/* Hamburger Menu */
-.hamburger-menu {
-  position: relative;
-}
-
-.hamburger-icon {
-  /* Add this line to restore original sizing behavior */
-  box-sizing: content-box;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 32px;
-  height: 24px;
-  cursor: pointer;
-  padding: 10px;
-  border: 2px solid var(--color-secondary);
-  transition: all 0.3s ease;
-}
-
-.hamburger-icon:hover {
-  background: rgba(122, 155, 118, 0.15);
-  transform: scale(1.05);
-}
-
-.hamburger-icon .line {
-  height: 3px;
-  background: var(--color-secondary);
-  transition: all 0.3s ease;
-}
-
-/* Dropdown Menu */
-.menu-dropdown {
-  position: absolute;
-  top: 55px;
-  right: 0;
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
-  box-shadow: 0 8px 24px var(--shadow);
-  min-width: 220px;
-  z-index: 1000;
-}
-
-.menu-dropdown a {
-  display: block;
-  text-decoration: none;
-  color: var(--color-text);
-  font-weight: 600;
-  padding: 16px 24px;
-  border-bottom: 1px solid var(--border-color);
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  font-size: 0.85em;
-}
-
-.menu-dropdown a:last-child {
-  border-bottom: none;
-}
-
-.menu-dropdown a:hover {
-  background: rgba(122, 155, 118, 0.1);
-  padding-left: 32px;
-}
-
-/* ============================================
-   USER MENU
-   ============================================ */
-.user-menu {
-  position: relative;
-}
-
-.user-icon {
-box-sizing: content-box; /* Add this here too */
-
-  font-size: 1.6em;
-  cursor: pointer;
-  color: var(--color-text);
-  transition: all 0.3s ease;
-  padding: 8px;
-  border: 2px solid var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-}
-
-.user-icon:hover {
-  background: rgba(200, 120, 88, 0.15);
-  transform: scale(1.08);
-}
-
-.dropdown {
-  position: absolute;
-  top: 55px;
-  right: 0;
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
-  box-shadow: 0 8px 24px var(--shadow);
-  min-width: 220px;
-  z-index: 1000;
-}
-
-.dropdown .user-email {
-  font-size: 0.85em;
-  color: var(--color-text);
-  padding: 16px 20px;
-  border-bottom: 2px solid var(--border-color);
-  font-weight: 600;
-  background: rgba(212, 200, 184, 0.2);
-}
-
-.logout-btn {
-  width: 100%;
-  padding: 16px 20px;
-  background: var(--gradient-primary);
-  color: #fef8f4;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.9em;
-}
-
-.logout-btn:hover {
-  box-shadow: 0 4px 12px var(--shadow);
-}
-
-/* ============================================
-   AUTH LINKS
-   ============================================ */
 .auth-links {
   display: flex;
-  gap: 12px;
-  flex-wrap: nowrap; /* ✅ inline on desktop */
+  gap: 8px;
 }
 
 .auth-links a {
   text-decoration: none;
   color: #fef8f4;
   font-weight: 700;
-  padding: 12px 28px;
-  transition: all 0.2s ease;
+  padding: 10px 20px;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.85em;
+  font-size: 0.8em;
   white-space: nowrap;
 }
 
-.auth-links a:first-child {
-  background: var(--gradient-secondary);
+.auth-links a:first-child { background: var(--gradient-secondary); }
+.auth-links a:last-child { background: var(--gradient-primary); }
+
+.user-icon {
+  box-sizing: content-box;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.auth-links a:last-child {
-  background: var(--gradient-primary);
+.hamburger-icon {
+  box-sizing: content-box;
+  width: 28px;
+  height: 20px;
+  padding: 8px;
+  border: 2px solid var(--color-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-icon .line {
+  height: 3px;
+  background: var(--color-secondary);
 }
 
 /* ============================================
-   MOBILE RESPONSIVE STYLES
+   MOBILE FIX (ONE LINE)
    ============================================ */
-
-/* Tablet and smaller (768px and below) */
 @media (max-width: 768px) {
   .navbar .container {
-    padding: 12px 16px;
-    flex-wrap: wrap;
+    padding: 10px 15px !important;
+    flex-wrap: nowrap !important;
   }
 
-  /* Stack nav links vertically */
+  /* 1. Hide middle links on phone - they won't fit! */
   .nav-links {
-    flex-direction: column;
-    width: 100%;
-    order: 3;
-    gap: 0;
-    margin-top: 12px;
+    display: none !important; 
   }
 
-  .nav-links a {
-    width: 100%;
-    padding: 12px 16px;
-    font-size: 0.85em;
-    letter-spacing: 1.5px;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-    clip-path: none;
+  /* 2. Shrink Logo */
+  .navbar h1 {
+    font-size: 1.1rem !important;
   }
 
-  .nav-links a:last-child {
-    border-bottom: 2px solid var(--border-color);
-  }
-
+  /* 3. Ensure Right Section stays horizontal */
   .right-controls {
-    gap: 16px;
+    gap: 8px !important;
   }
 
   .auth-links {
-    gap: 8px;
-  }
-
-  .auth-links a {
-    padding: 10px 20px;
-    font-size: 0.75em;
-    letter-spacing: 1.5px;
-  }
-
-  .user-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1.4em;
-  }
-
-  .dropdown {
-    min-width: 200px;
-    right: 0;
-  }
-
-  .menu-dropdown {
-    min-width: 200px;
-    right: 0;
-    left: auto;
-  }
-}
-
-/* Mobile phones (480px and below) */
-@media (max-width: 480px) {
-  .navbar .container {
-    padding: 10px 12px;
-  }
-
-  .nav-links a {
-    padding: 10px 12px;
-    font-size: 0.8em;
-    letter-spacing: 1px;
-  }
-
-  .auth-links {
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .auth-links a {
-    padding: 10px 16px;
-    font-size: 0.7em;
-    text-align: center;
-  }
-
-  .right-controls {
-    gap: 12px;
-  }
-
-  .user-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 1.2em;
-  }
-
-  .hamburger-icon {
-    width: 28px;
-    height: 20px;
-    padding: 8px;
-  }
-
-  .dropdown {
-    min-width: 180px;
-    right: 0;
-  }
-
-  .menu-dropdown {
-    min-width: 180px;
-    right: 0;
-    left: auto;
-  }
-
-  .dropdown .user-email {
-    font-size: 0.75em;
-    padding: 12px 16px;
-  }
-
-  .logout-btn {
-    padding: 14px 16px;
-    font-size: 0.8em;
-    letter-spacing: 1.5px;
-  }
-
-  .menu-dropdown a {
-    padding: 14px 20px;
-    font-size: 0.8em;
-    letter-spacing: 1px;
-  }
-
-  .menu-dropdown a:hover {
-    padding-left: 28px;
-  }
-}
-
-/* Very small phones (360px and below) */
-@media (max-width: 360px) {
-  .navbar .container {
-    padding: 8px 10px;
-  }
-
-  .nav-links a {
-    padding: 8px 10px;
-    font-size: 0.75em;
-  }
-
-  .auth-links a {
-    padding: 8px 12px;
-    font-size: 0.65em;
-  }
-
-  .user-icon {
-    width: 32px;
-    height: 32px;
-    font-size: 1.1em;
-  }
-
-  .hamburger-icon {
-    width: 24px;
-    height: 18px;
-    padding: 6px;
-  }
-
-  .right-controls {
-    gap: 10px;
-  }
-
-  .dropdown,
-  .menu-dropdown {
-    min-width: 160px;
-  }
-
-
-
-  /* Navbar.css - Updated Mobile Layout */
-
-@media (max-width: 768px) {
-  /* 1. Force the main container to stay as a single row */
-  .navbar .container {
-    display: flex;
-    flex-direction: row !important; /* Force horizontal */
-    flex-wrap: nowrap !important;   /* Prevent wrapping to a second line */
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 8px; /* Tighten padding for more room */
-    gap: 5px; 
-  }
-
-  /* 2. Scale down the Logo */
-  .navbar .container h1 {
-    font-size: 1.1em; /* Make logo smaller so it fits */
-    margin: 0;
-    white-space: nowrap;
-  }
-
-  /* 3. Keep Nav Links inline and small */
-  .nav-links {
-    display: flex !important;
     flex-direction: row !important;
-    gap: 8px;
-  }
-
-  .nav-links a {
-    font-size: 0.75em;
-    padding: 5px 2px;
-  }
-
-  /* 4. Ensure Right Controls (Auth/Icons) stay in the same row */
-  .right-controls {
-    display: flex;
-    flex-direction: row !important;
-    align-items: center;
-    gap: 5px;
-  }
-
-  /* 5. Handle Login/Signup buttons specifically */
-  .auth-links {
-    display: flex !important;
-    flex-direction: row !important; /* Prevents vertical stacking */
-    gap: 4px;
+    gap: 4px !important;
   }
 
   .auth-links a {
-    padding: 6px 8px;
-    font-size: 0.7em;
-    white-space: nowrap;
+    padding: 8px 12px !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 0px !important;
   }
 
-  /* 6. Scale down icons if necessary */
+  /* 4. Shrink Icons */
   .user-icon, .hamburger-icon {
-    transform: scale(0.8); /* Shrink icons slightly to save space */
-    margin: 0;
+    transform: scale(0.85);
   }
-}
-
 }
