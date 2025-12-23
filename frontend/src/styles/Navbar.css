@@ -75,6 +75,18 @@
 .auth-links a:first-child { background: var(--gradient-secondary); }
 .auth-links a:last-child { background: var(--gradient-primary); }
 
+/* USER DROPDOWN & HAMBURGER MENU */
+.user-menu .dropdown, 
+.hamburger-menu .menu-dropdown {
+  /* CHANGE: Replace #fffaf5 with theme variable */
+  background: var(--bg-secondary); 
+  /* CHANGE: Replace #d8b8a4 with theme border variable */
+  border: 2px solid var(--border-color); 
+  box-shadow: 0 8px 20px var(--shadow);
+  overflow: hidden;
+  z-index: 9999;
+}
+
 .user-icon {
   box-sizing: content-box;            /* Ensures border doesn't shrink the 40px width */
   width: 40px;                        /* Fixed width for a square icon box */
@@ -96,11 +108,11 @@
 }
 
 .user-menu .user-email {
-  background: #fffaf5;
-  color: #6a4a3c;                     /* Muted brown for email text */
+  background: var(--bg-secondary);
+  color: var(--color-text);                   /* Muted brown for email text */
   font-weight: 600;
   text-align: center;                 /* Centers email in the menu */
-  border-bottom: 1px solid #e6cfc0;   /* Divider line */
+  border-bottom: 1px solid var(--border-color);   /* Divider line */
   padding: 12px;                      /* Padding around email */
 }
 
@@ -149,14 +161,14 @@
 }
 
 .hamburger-menu .menu-dropdown a {
-  color: #6a4a3c;
+  color: var(--color-text);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .hamburger-menu .menu-dropdown a:hover {
-  background: #f2e4da;                /* Subtle highlight on hover */
+  background: var(--border-color);            /* Subtle highlight on hover */
 }
 
 /* MOBILE FIX: Adjustments for screens 768px and smaller*/
