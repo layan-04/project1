@@ -6,7 +6,7 @@
   align-items: center;             /* Vertically centers the content */
   justify-content: center;        /* Horizontally centers the content */
   background: var(--bg-primary);  /* Theme-based background color */
-  font-family: 'Segoe UI';    /* Clean modern font stack */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    /* Clean modern font stack */
   padding: 20px;                   /* Prevents the quiz box from touching screen edges */
   position: relative;              /* Anchor for the top glowing line */
 }
