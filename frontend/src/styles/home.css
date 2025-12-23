@@ -1,99 +1,121 @@
+/* SECTION 1: THEME & GLOBAL SETTINGS */
+
+:root {
+  /* Color Variables - The "Identity" of your app */
+  --primary: #1aac83;              /* Your brand's main green color */
+  --error: #e7195a;                /* Bright red used for error messages */
+  --bg-primary: #f5f0e8;           /* Light theme main background */
+  --bg-secondary: #faf7f2;         /* Lighter background for cards/inputs */
+  --color-text: #3d3229;           /* Main text color (Dark Brown) */
+  --color-text-light: #7a6a5e;     /* Subtitle/Secondary text color */
+  --color-primary: #c87858;        /* Geometric accent color (Terracotta) */
+  --shadow: rgba(0, 0, 0, 0.08);   /* Soft shadow for depth */
+}
+
+/* Global Reset: Ensures padding doesn't break element width */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* SECTION 2: HOME PAGE STYLES */
+
 .home {
-  text-align: center;
-  padding: 60px 20px;
-  background: var(--bg-primary);
-  min-height: calc(100vh - 70px);
+  text-align: center;              /* Centers all text inside the home container */
+  padding: 60px 20px;              /* Top/Bottom and Left/Right spacing */
+  background: var(--bg-primary);   /* Uses theme background variable */
+  min-height: calc(100vh - 70px);  /* Ensures page fills screen minus header height */
 }
 
 .home h1 {
-  font-size: 2.5em;
-  color: var(--color-text);
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 16px;
+  font-size: 2.5em;                /* Large headline text */
+  color: var(--color-text);        /* Dark brown text */
+  font-weight: 700;                /* Bold text */
+  letter-spacing: 4px;             /* Spaced out letters for modern look */
+  text-transform: uppercase;       /* ALL CAPS */
+  margin-bottom: 16px;             /* Space below the title */
+  position: relative;              /* Anchor for the underline below */
+  display: inline-block;           /* Title only takes as much width as the text */
+  padding-bottom: 16px;            /* Gap for the underline */
 }
 
+/* The centered geometric underline for the H1 */
 .home h1::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary) 100%);
-  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+  content: '';                     /* Pseudo-elements need content to show up */
+  position: absolute;              /* Absolute positioning relative to H1 */
+  bottom: 0;                       /* Places it at the bottom */
+  left: 50%;                       /* Centers it horizontally... */
+  transform: translateX(-50%);     /* ...and offsets it by half its width for perfect centering */
+  width: 120px;                    /* Width of underline */
+  height: 4px;                     /* Thickness of underline */
+  background: var(--color-primary);/* Accent color */
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%); /* Slanted trapezoid shape */
 }
 
+/* The intro paragraph text */
 .home > p {
-  font-size: 1.1em;
-  color: var(--color-text-light);
-  margin-bottom: 50px;
-  max-width: 700px;
-  margin-left: auto;
+  font-size: 1.1em;                /* Slightly larger readable text */
+  color: var(--color-text-light);  /* Muted text color */
+  margin-bottom: 50px;             /* Space before the cards start */
+  max-width: 700px;                /* Prevents lines from being too long */
+  margin-left: auto;               /* Centers the max-width block */
   margin-right: auto;
-  line-height: 1.6;
+  line-height: 1.6;                /* Improves vertical spacing between lines */
 }
+
+/* SECTION 3: TOOL CARDS (The Card Grid) */
 
 .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 32px;
-  max-width: 1400px;
-  margin: 0 auto;
-  align-items: stretch;
+  display: flex;                   /* Places cards side-by-side */
+  flex-wrap: wrap;                 /* Wraps cards to new line if they don't fit */
+  justify-content: center;         /* Centers the cards in the middle of the screen */
+  gap: 32px;                       /* The space between each card */
+  max-width: 1400px;               /* Max width of the whole grid */
+  margin: 0 auto;                  /* Centers the container horizontally */
+  align-items: stretch;            /* Makes all cards in a row the same height */
 }
 
 .tool-card {
-  background: var(--bg-primary);
-  padding: 32px 28px;
-  width: 320px;
-  box-shadow: 0 8px 24px var(--shadow);
-  transition: all 0.4s ease;
-  position: relative;
-  clip-path: polygon(0 0, 100% 0, 100% 95%, 97% 100%, 0 100%);
-  
-  /* ADD THESE: This turns the card into a flex column */
-  display: flex;
-  flex-direction: column;
+  background: var(--bg-primary);   /* Card background color */
+  padding: 32px 28px;              /* Inner space for card content */
+  width: 320px;                    /* Fixed width of the card on desktop */
+  box-shadow: 0 8px 24px var(--shadow); /* Shadow for depth */
+  transition: all 0.4s ease;       /* Smoothly animates hover effects */
+  position: relative;              /* Anchor for decorative pseudo-elements */
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 97% 100%, 0 100%); /* Trims the bottom corner */
+  display: flex;                   /* Turns card into a flex container */
+  flex-direction: column;          /* Stacks content vertically (Title, P, Button) */
 }
 
+/* The neon-style glowing top line on each card */
 .tool-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
+  top: 0; left: 0; right: 0;
+  height: 4px;                     /* Thickness of the line */
   background: linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%);
 }
 
+/* The vertical bar that appears when you hover */
 .tool-card::after {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--color-primary);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;                      /* Width of the side bar */
+  background: var(--color-primary);/* Accent color */
+  opacity: 0;                      /* Starts hidden */
+  transition: opacity 0.4s ease;   /* Fades in smoothly */
 }
 
 .tool-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px var(--shadow);
+  transform: translateY(-8px);     /* Moves the card up by 8px on hover */
+  box-shadow: 0 12px 32px var(--shadow); /* Deepens the shadow on hover */
 }
 
 .tool-card:hover::after {
-  opacity: 1;
+  opacity: 1;                      /* Shows the vertical bar on hover */
 }
 
+/* Card Heading */
 .tool-card h3 {
   font-size: 1.3em;
   margin-bottom: 16px;
@@ -105,20 +127,19 @@
   padding-bottom: 12px;
 }
 
+/* Slanted underline for card titles */
 .tool-card h3::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50px;
-  height: 3px;
+  bottom: 0; left: 0;
+  width: 50px; height: 3px;
   background: var(--color-primary);
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
 
-/* ADD THIS: This ensures the paragraph takes up all available middle space */
+/* Card Description Text */
 .tool-card p {
-  flex-grow: 1; 
+  flex-grow: 1;                    /* Forces the paragraph to fill space, pushing button down */
   font-size: 1em;
   margin-bottom: 24px;
   color: var(--color-text-light);
@@ -126,112 +147,54 @@
   text-align: left;
 }
 
+/* Card Button */
 .tool-card button {
-  background: var(--gradient-primary);
-  color: #ffffff;
-  border: none;
-  padding: 14px 24px;
-  margin-top: auto;
-  border-radius: 0;
-  cursor: pointer;
-  font-size: 0.95em;
+  background: var(--color-primary);/* The accent color */
+  color: #ffffff;                  /* White text */
+  border: none;                    /* No border */
+  padding: 14px 24px;              /* Size of the button */
+  margin-top: auto;                /* Extra safety to stay at the bottom */
+  cursor: pointer;                 /* Hand icon on hover */
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: all 0.3s ease;
-  width: 100%;
-  box-shadow: 0 4px 12px var(--shadow);
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 98% 100%, 0 100%);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;       /* Smooth hover transition */
+  width: 100%;                     /* Button fills card width */
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 98% 100%, 0 100%); /* Geometric button cut */
 }
 
 .tool-card button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px var(--shadow);
-}
-
-.tool-card button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px var(--shadow);
+  transform: translateY(-2px);     /* Small lift on hover */
+  filter: brightness(1.1);         /* Makes button slightly brighter */
 }
 
 .tool-card button:disabled {
-  background: var(--border-color);
-  cursor: not-allowed;
-  box-shadow: none;
+  background: #ccc;                /* Grey background when disabled */
+  cursor: not-allowed;             /* Blocked icon on hover */
   opacity: 0.6;
 }
 
-.tool-card button:disabled:hover {
-  transform: none;
-  box-shadow: none;
-}
+/* SECTION 4: RESPONSIVE DESIGN (Media Queries) */
 
-/* Responsive Design */
+/* TABLETS: Screens smaller than 1024px */
 @media (max-width: 1024px) {
-  .home h1 {
-    font-size: 2em;
-  }
-
-  .card-container {
-    gap: 24px;
-  }
-
-  .tool-card {
-    width: 280px;
-  }
+  .home h1 { font-size: 2em; }
+  .tool-card { width: 280px; }     /* Narrower cards for smaller screens */
 }
 
+/* PHONES: Screens smaller than 768px */
 @media (max-width: 768px) {
-  .home {
-    padding: 40px 16px;
-  }
-
-  .home h1 {
-    font-size: 1.6em;
-    letter-spacing: 3px;
-  }
-
-  .home > p {
-    font-size: 1em;
-    margin-bottom: 40px;
-  }
-
-  .card-container {
-    gap: 20px;
-  }
-
+  .home { padding: 40px 16px; }
+  .home h1 { font-size: 1.6em; }
+  .card-container { gap: 20px; }   /* Tighter spacing between cards */
   .tool-card {
-    width: 100%;
-    max-width: 400px;
-    padding: 28px 24px;
+    width: 100%;                   /* Cards stack in a single column */
+    max-width: 400px;              /* Prevents them from being too wide */
   }
 }
 
+/* SMALL PHONES: Screens smaller than 480px */
 @media (max-width: 480px) {
-  .home {
-    padding: 32px 16px;
-  }
-
-  .home h1 {
-    font-size: 1.3em;
-    letter-spacing: 2px;
-  }
-
-  .tool-card {
-    padding: 24px 20px;
-  }
-
-  .tool-card h3 {
-    font-size: 1.1em;
-  }
-
-  .tool-card p {
-    font-size: 0.95em;
-  }
-
-  .tool-card button {
-    padding: 12px 20px;
-    font-size: 0.9em;
-  }
+  .home h1 { font-size: 1.3em; letter-spacing: 2px; }
+  .tool-card { padding: 24px 20px; } /* Less internal space on tiny screens */
 }
