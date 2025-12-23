@@ -53,15 +53,14 @@
   background: var(--bg-primary);
   padding: 32px 28px;
   width: 320px;
-  /* Add these lines for uniformity */
-  display: flex;
-  flex-direction: column;
-  min-height: 350px; /* Adjust this value until they look right */
-  flex-shrink: 0;    /* Prevents cards from squishing on small screens */
   box-shadow: 0 8px 24px var(--shadow);
   transition: all 0.4s ease;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 95%, 97% 100%, 0 100%);
+  
+  /* ADD THESE: This turns the card into a flex column */
+  display: flex;
+  flex-direction: column;
 }
 
 .tool-card::before {
@@ -117,7 +116,9 @@
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
 
+/* ADD THIS: This ensures the paragraph takes up all available middle space */
 .tool-card p {
+  flex-grow: 1; 
   font-size: 1em;
   margin-bottom: 24px;
   color: var(--color-text-light);
