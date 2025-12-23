@@ -144,4 +144,105 @@
   .user-icon, .hamburger-icon {
     transform: scale(0.85);
   }
+
+
+
+/* ================================
+   USER DROPDOWN (NO MARGIN CHANGES)
+   ================================ */
+
+.user-menu {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+
+  background: #fffaf5;
+  border: 2px solid #d8b8a4;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  width: 220px;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.user-email {
+  padding: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6a4a3c;
+  background: #fffaf5;
+  border-bottom: 1px solid #e6cfc0;
+  text-align: center;
+}
+
+.logout-btn {
+  all: unset;
+  cursor: pointer;
+
+  background: #c8744f;
+  color: white;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  padding: 14px 0;
+  transition: background 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #b16442;
+}
+
+
+/* ================================
+   HAMBURGER DROPDOWN (FEEDBACK)
+   ================================ */
+
+.hamburger-menu {
+  position: relative;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+
+  background: #fffaf5;
+  border: 2px solid #d8b8a4;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  width: 200px;
+
+  z-index: 1000;
+}
+
+.menu-dropdown a {
+  display: block;
+
+  padding: 16px;
+  text-decoration: none;
+
+  color: #6a4a3c;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  background: #fffaf5;
+  transition: background 0.2s ease;
+}
+
+.menu-dropdown a:hover {
+  background: #f2e4da;
+}
+
+
+
 }
