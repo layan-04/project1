@@ -89,6 +89,36 @@
   justify-content: center;
 }
 
+/* === USER DROPDOWN VISUAL FIX (NO LAYOUT CHANGE) === */
+.user-menu .dropdown {
+  background: #fffaf5;
+  border: 2px solid #d8b8a4;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.user-menu .user-email {
+  background: #fffaf5;
+  color: #6a4a3c;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #e6cfc0;
+}
+
+.user-menu .logout-btn {
+  background: #c8744f;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+}
+
+.user-menu .logout-btn:hover {
+  background: #b16442;
+}
+
 .hamburger-icon {
   box-sizing: content-box;
   width: 28px;
@@ -103,6 +133,25 @@
 .hamburger-icon .line {
   height: 3px;
   background: var(--color-secondary);
+}
+
+/* === FEEDBACK DROPDOWN VISUAL FIX (NO LAYOUT CHANGE) === */
+.hamburger-menu .menu-dropdown {
+  background: #fffaf5;
+  border: 2px solid #d8b8a4;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  z-index: 9999;
+}
+
+.hamburger-menu .menu-dropdown a {
+  color: #6a4a3c;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hamburger-menu .menu-dropdown a:hover {
+  background: #f2e4da;
 }
 
 /* ============================================
@@ -144,56 +193,5 @@
   .user-icon, .hamburger-icon {
     transform: scale(0.85);
   }
-
-
-  /* === USER DROPDOWN VISUAL FIX (NO LAYOUT CHANGE) === */
-.user-menu .dropdown {
-  background: #fffaf5;
-  border: 2px solid #d8b8a4;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
-  z-index: 9999;
-}
-
-.user-menu .user-email {
-  background: #fffaf5;
-  color: #6a4a3c;
-  font-weight: 600;
-  text-align: center;
-  border-bottom: 1px solid #e6cfc0;
-}
-
-.user-menu .logout-btn {
-  background: #c8744f;
-  color: #ffffff;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: none;
-}
-
-.user-menu .logout-btn:hover {
-  background: #b16442;
-}
-
-
-/* === FEEDBACK DROPDOWN VISUAL FIX (NO LAYOUT CHANGE) === */
-.hamburger-menu .menu-dropdown {
-  background: #fffaf5;
-  border: 2px solid #d8b8a4;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  z-index: 9999;
-}
-
-.hamburger-menu .menu-dropdown a {
-  color: #6a4a3c;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.hamburger-menu .menu-dropdown a:hover {
-  background: #f2e4da;
-}
 
 }
