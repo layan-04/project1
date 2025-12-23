@@ -44,9 +44,7 @@ app.use((req, res, next) => {
 app.use('/api/chat', chatRoutes)        // Chat endpoints
 app.use('/api/user', userRoutes)        // User login/signup endpoints
 app.use('/api/feedback', feedbackRoutes); // Feedback endpoints
-
-// URL scanner route
-app.use('/api/tools/url-scanner', urlScanRoutes);
+app.use('/api/tools/url-scanner', urlScanRoutes); //url scan endpoints
 
 // Simple warm-up endpoint
 app.get('/ping', async (req, res) => {
@@ -70,3 +68,4 @@ mongoose.connect(process.env.MONGO_URI)
         // If connection fails, log the error
         console.log(error)
     })
+    
