@@ -72,6 +72,9 @@
 }
 
 .hamburger-icon {
+  /* Add this line to restore original sizing behavior */
+  box-sizing: content-box;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -135,6 +138,8 @@
 }
 
 .user-icon {
+box-sizing: content-box; /* Add this here too */
+
   font-size: 1.6em;
   cursor: pointer;
   color: var(--color-text);
