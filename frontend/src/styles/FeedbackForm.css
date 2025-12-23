@@ -1,93 +1,95 @@
-/* =========================
-   Theme Variables
-   ========================= */
+/* THEME VARIABLES: Centralized color palette for easy updates */
 
-/* Light Theme (default) */
+/* Light Theme: Default colors used when system is in Light Mode */
 :root {
-  --bg-primary: linear-gradient(135deg, #f5f0e8 0%, #ebe4d9 100%);
-  --bg-secondary: #faf7f2;
-  --color-text: #3d3229;
-  --color-placeholder: #a69684;
-  --color-accent: #c87858;
-  --color-border: #d4c8b8;
-  --color-success: #6a8b66;
-  --shadow: rgba(0, 0, 0, 0.08);
+  --bg-primary: linear-gradient(135deg, #f5f0e8 0%, #ebe4d9 100%); /* Warm beige gradient background */
+  --bg-secondary: #faf7f2;       /* Flat off-white for input field backgrounds */
+  --color-text: #3d3229;         /* Deep brown text for high readability */
+  --color-placeholder: #a69684;  /* Muted tan for "ghost" text in inputs */
+  --color-accent: #c87858;       /* Primary brand color (Terracotta Orange) */
+  --color-border: #d4c8b8;       /* Subtle sand color for lines and borders */
+  --color-success: #6a8b66;      /* Calm sage green for success notifications */
+  --shadow: rgba(0, 0, 0, 0.08); /* Light, airy shadow for a subtle lift */
 }
 
-/* Dark Theme */
+/* Dark Theme: Automatically overrides variables if user device is in Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
-    --bg-secondary: #333333;
-    --color-text: #f0f0f0;
-    --color-placeholder: #aaaaaa;
-    --color-accent: #d68868;
-    --color-border: #555555;
-    --color-success: #7a9b76;
-    --shadow: rgba(0, 0, 0, 0.6);
+    --bg-primary: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%); /* Deep charcoal gradient */
+    --bg-secondary: #333333;     /* Dark grey for input fields */
+    --color-text: #f0f0f0;       /* Off-white text for high contrast */
+    --color-placeholder: #aaaaaa; /* Medium grey placeholder text */
+    --color-accent: #d68868;     /* Slightly lighter orange to "pop" on dark backgrounds */
+    --color-border: #555555;     /* Darker borders to blend with background */
+    --color-success: #7a9b76;    /* Brighter green for dark mode visibility */
+    --shadow: rgba(0, 0, 0, 0.6);  /* Heavier, darker shadow for depth on dark UI */
   }
 }
 
-/* =========================
-   Feedback Form Styles
-   ========================= */
+/* FEEDBACK FORM CONTAINER: The "Box" that holds all form elements */
 
 .feedback-form {
-  padding: 40px;
-  max-width: 600px;
-  margin: 40px auto;
-  background: var(--bg-primary);
-  border-radius: 0;
-  box-shadow: 0 8px 24px var(--shadow);
-  position: relative;
+  padding: 40px;                 /* Internal spacing around the content */
+  max-width: 600px;              /* Constraints the form width on desktop */
+  margin: 40px auto;             /* Centers the form horizontally and adds top/bottom margin */
+  background: var(--bg-primary); /* Applies the theme-specific gradient */
+  border-radius: 0;              /* Sharp, industrial corners */
+  box-shadow: 0 8px 24px var(--shadow); /* Depth effect using the theme shadow */
+  position: relative;            /* Necessary anchor for the absolute-positioned ::before line */
 }
 
+/* Decorative glowing neon line at the very top edge */
 .feedback-form::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
+  content: '';                   /* Pseudo-elements require content to appear */
+  position: absolute;            /* Places line exactly relative to the container */
+  top: 0; left: 0; right: 0;      /* Stretches line across the full top width */
+  height: 3px;                   /* Thickness of the decorative line */
+  /* Creates a fade-out effect on both sides of the accent color */
   background: linear-gradient(90deg, transparent 0%, var(--color-accent) 50%, transparent 100%);
 }
 
+/* Heading styling (e.g., "Send Feedback") */
 .feedback-form h2 {
-  margin: 0 0 24px 0;
-  font-size: 1.5em;
+  margin: 0 0 24px 0;            /* 24px gap between title and first input */
+  font-size: 1.5em;              /* Scaled-up text size */
   color: var(--color-text);
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  position: relative;
-  padding-bottom: 12px;
+  font-weight: 700;              /* Bold weight */
+  letter-spacing: 3px;           /* Tech-style wide letter spacing */
+  text-transform: uppercase;     /* All capital letters */
+  position: relative;            /* Anchor for the slanted underline */
+  padding-bottom: 12px;          /* Space for the underline */
 }
 
+/* The slanted geometric underline beneath the title */
 .feedback-form h2::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 80px;
+  bottom: 0; left: 0;
+  width: 80px;                   /* Short underline width */
   height: 3px;
   background: var(--color-accent);
+  /* Creates a trapezoid shape by cutting the right edge at a slant */
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
 
+/* MESSAGES & ANIMATIONS: Styles for success/error alerts */
+
 .success {
-  padding: 14px 18px;
-  margin-bottom: 20px;
-  background: rgba(106, 139, 102, 0.15);
+  padding: 14px 18px;            /* Internal padding for the alert box */
+  margin-bottom: 20px;           /* Space between alert and form */
+  background: rgba(106, 139, 102, 0.15); /* Very transparent version of success green */
   color: var(--color-success);
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 0.9em;
-  border-left: 3px solid var(--color-success);
+  border-left: 3px solid var(--color-success); /* Thick accent bar on the left */
+  /* Geometric "cut" on the bottom-right corner */
   clip-path: polygon(0 0, 100% 0, 100% 85%, 98% 100%, 0 100%);
-  animation: slideIn 0.4s ease;
+  animation: slideIn 0.4s ease;  /* Triggers the entrance animation */
 }
 
+/* Entrance animation: Fades in and slides from the left */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -99,123 +101,133 @@
   }
 }
 
+/* FORM CONTROLS: Layout for Inputs, Labels, and Buttons */
+
 .feedback-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  display: flex;                 /* Flexbox for vertical alignment */
+  flex-direction: column;        /* Stacks items top-to-bottom */
+  gap: 24px;                     /* Consistent spacing between input rows */
 }
 
 .feedback-form form > div {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: column;        /* Stacks label above the input */
+  gap: 8px;                      /* Gap between Label and Input */
 }
 
 .feedback-form label {
   font-weight: 700;
   color: var(--color-text);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 2px;           /* Tech/Modern look */
   font-size: 0.85em;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
+/* Styling for both Input fields and Textareas */
 .feedback-form input,
 .feedback-form textarea {
-  width: 100%;
-  padding: 14px 18px;
-  border: none;
-  border-bottom: 3px solid var(--color-border);
-  border-radius: 0;
+  width: 100%;                   /* Takes full container width */
+  padding: 14px 18px;            /* Generous padding for easier typing */
+  border: none;                  /* Removes default browser borders */
+  border-bottom: 3px solid var(--color-border); /* Modern bottom-only border */
+  border-radius: 0;              /* Sharp corners */
   font-size: 1em;
   background: var(--bg-secondary);
   color: var(--color-text);
-  transition: all 0.3s ease;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;     /* Smoothly animates focus effects */
+  font-family: 'Segoe UI', Tahoma, sans-serif;
   font-weight: 500;
-  box-sizing: border-box;
+  box-sizing: border-box;        /* Prevents padding from expanding width */
 }
 
+/* Highlighting the field when the user clicks inside */
 .feedback-form input:focus,
 .feedback-form textarea:focus {
-  outline: none;
-  border-bottom-color: var(--color-accent);
-  background: #ffffff; /* stays white in light mode */
-  box-shadow: 0 4px 12px rgba(200, 120, 88, 0.2);
+  outline: none;                 /* Removes the ugly default blue outline */
+  border-bottom-color: var(--color-accent); /* Border turns brand color */
+  background: #ffffff;           /* Turns pure white in light mode to stand out */
+  box-shadow: 0 4px 12px rgba(200, 120, 88, 0.2); /* Soft brand-colored glow */
 }
 
+/* Dark Mode override for the Input Focus effect */
 @media (prefers-color-scheme: dark) {
   .feedback-form input:focus,
   .feedback-form textarea:focus {
-    background: #444444; /* dark mode focus background */
-    box-shadow: 0 4px 12px rgba(200, 120, 88, 0.4);
+    background: #444444;         /* Lighter grey focus background for dark mode */
+    box-shadow: 0 4px 12px rgba(200, 120, 88, 0.4); /* Stronger glow for dark mode */
   }
 }
 
 .feedback-form input::placeholder,
 .feedback-form textarea::placeholder {
   color: var(--color-placeholder);
-  font-weight: 400;
+  font-weight: 400;              /* Thinner weight for non-filled text */
 }
 
 .feedback-form textarea {
-  min-height: 150px;
-  resize: vertical;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 150px;             /* Ensures large enough area for long feedback */
+  resize: vertical;              /* Allows user to stretch height but not width */
 }
+
+/* SUBMIT BUTTON: Styling for the main action button */
 
 .feedback-form button {
   width: 100%;
   padding: 16px 18px;
   margin-top: 8px;
   border: none;
+  /* Diagonal gradient for a more dynamic "Action" feel */
   background: linear-gradient(135deg, var(--color-accent) 0%, #b86848 100%);
-  color: #ffffff;
+  color: #ffffff;                /* Always white text on the orange button */
   font-size: 1em;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease;     /* Animates hovers and clicks */
   box-shadow: 0 4px 12px rgba(200, 120, 88, 0.3);
+  /* Geometric "cut" to match the sidebar items and success messages */
   clip-path: polygon(0 0, 100% 0, 100% 85%, 98% 100%, 0 100%);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
+/* Hover state: Brightens the button and lifts it slightly */
 .feedback-form button:hover {
   background: linear-gradient(135deg, #d68868 0%, var(--color-accent) 100%);
   box-shadow: 0 6px 16px rgba(200, 120, 88, 0.4);
-  transform: translateY(-2px);
+  transform: translateY(-2px);   /* Lifts button up by 2 pixels */
 }
 
+/* Active state: When the button is physically pressed down */
 .feedback-form button:active {
-  transform: translateY(0);
+  transform: translateY(0);      /* Pushes button back down */
   box-shadow: 0 2px 8px rgba(200, 120, 88, 0.3);
 }
 
-/* =========================
-   Responsive Design
-   ========================= */
+/* RESPONSIVE DESIGN (Media Queries): Ensures the form works on Tablets and Phones */
 
+/* TABLET ADJUSTMENTS */
 @media (max-width: 768px) {
   .feedback-form {
-    padding: 30px 24px;
-    margin: 20px auto;
+    padding: 30px 24px;          /* Slightly less padding */
+    margin: 20px auto;           /* Smaller margin from screen top */
   }
 
   .feedback-form h2 {
-    font-size: 1.3em;
+    font-size: 1.3em;            /* Smaller title for mobile */
   }
 
   .feedback-form form {
-    gap: 20px;
+    gap: 20px;                   /* Tighter spacing between inputs */
   }
 }
 
+/* MOBILE PHONE ADJUSTMENTS */
 @media (max-width: 480px) {
   .feedback-form {
-    padding: 24px 20px;
-    margin: 16px;
+    padding: 24px 20px;          /* Minimal padding for small screens */
+    margin: 16px;                /* Keeps the form from touching screen edges */
   }
 
   .feedback-form h2 {
@@ -223,6 +235,7 @@
     letter-spacing: 2px;
   }
 
+  /* Shrinks text and padding so inputs aren't too bulky on tiny screens */
   .feedback-form input,
   .feedback-form textarea {
     padding: 12px 16px;
