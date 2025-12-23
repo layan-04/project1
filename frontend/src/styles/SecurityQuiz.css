@@ -136,6 +136,7 @@
 
 .explanation {
   margin-top: 30px;
+  font-family: inherit;
   padding: 25px;
   background: rgba(122, 155, 118, 0.1); /* Very light green tint */
   border-left: 4px solid var(--color-secondary);
@@ -151,6 +152,15 @@
 }
 
 /* NEXT & RESULTS NAVIGATION */
+.results {
+  display: flex;
+  flex-direction: column;      /* Stacks items vertically */
+  align-items: center;         /* Centers everything horizontally */
+  text-align: center;          /* Centers text inside the blocks */
+  
+  font-family: 'Segoe UI', Tahoma, sans-serif; /* One font for everything */
+  padding: 40px 20px
+}
 
 .next-button {
   padding: 14px 28px;
