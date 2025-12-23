@@ -402,44 +402,64 @@ box-sizing: content-box; /* Add this here too */
 
 
 
-  /* Navbar.css - Add to the very bottom */
+  /* Navbar.css - Updated Mobile Layout */
 
 @media (max-width: 768px) {
-  /* 1. Keep the main container organized */
+  /* 1. Force the main container to stay as a single row */
   .navbar .container {
     display: flex;
-    flex-wrap: wrap; /* Allows the nav-links to drop down */
+    flex-direction: row !important; /* Force horizontal */
+    flex-wrap: nowrap !important;   /* Prevent wrapping to a second line */
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px; /* Adjust padding for clean edges */
+    padding: 10px 8px; /* Tighten padding for more room */
+    gap: 5px; 
   }
 
-  /* 2. Force the Logo (first element) and Controls to stay side-by-side */
-  .navbar .container > *:not(.nav-links) {
-    flex-shrink: 0; /* Prevents them from being squished */
-    max-width: 50%; /* Ensures they share the top row */
+  /* 2. Scale down the Logo */
+  .navbar .container h1 {
+    font-size: 1.1em; /* Make logo smaller so it fits */
+    margin: 0;
+    white-space: nowrap;
   }
 
-  /* 3. Fix the Right Controls to stay inline */
-  .right-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: nowrap !important; /* Force controls to stay in one line */
-  }
-
-  /* 4. Stop Login/Signup buttons from stacking vertically */
-  .auth-links {
-    display: flex;
-    flex-direction: row !important; /* Override the column rule */
+  /* 3. Keep Nav Links inline and small */
+  .nav-links {
+    display: flex !important;
+    flex-direction: row !important;
     gap: 8px;
   }
 
-  /* Optional: Make auth buttons smaller to fit on phone screens */
-  .auth-links a {
-    padding: 8px 12px;
+  .nav-links a {
     font-size: 0.75em;
-    white-space: nowrap; /* Prevents text from wrapping */
+    padding: 5px 2px;
+  }
+
+  /* 4. Ensure Right Controls (Auth/Icons) stay in the same row */
+  .right-controls {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* 5. Handle Login/Signup buttons specifically */
+  .auth-links {
+    display: flex !important;
+    flex-direction: row !important; /* Prevents vertical stacking */
+    gap: 4px;
+  }
+
+  .auth-links a {
+    padding: 6px 8px;
+    font-size: 0.7em;
+    white-space: nowrap;
+  }
+
+  /* 6. Scale down icons if necessary */
+  .user-icon, .hamburger-icon {
+    transform: scale(0.8); /* Shrink icons slightly to save space */
+    margin: 0;
   }
 }
 
