@@ -33,7 +33,7 @@ const Home = () => {
         <div className="tool-card">
           <h3>🛡️ URL Checker</h3>
           <p>Verify if a URL is safe, suspicious, or potentially harmful before visiting.</p>
-          <Link to="/url-scanner">
+          <Link to="/tools/url-scanner">
             <button>Check URL</button>
             </Link>
         </div>
