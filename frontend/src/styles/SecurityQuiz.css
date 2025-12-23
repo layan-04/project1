@@ -198,6 +198,17 @@
   line-height: 1;
 }
 
+.score-message {
+  margin: 25px 0 35px 0;
+  font-size: 1.2em;
+  font-family: inherit;
+  color: var(--color-text);
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;      /* Centers the actual words inside the paragraph */
+  max-width: 500px;
+}
+
 /* Restart Button */
 .restart-button {
   /* Size and Alignment */
