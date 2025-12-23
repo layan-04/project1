@@ -5,7 +5,7 @@
 .chatbot {
   display: flex;
   height: 100vh;
-  height: 100dvh;          /* added */
+  height: 80dvh;          /* added */
   max-width: 1000px;
   margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
