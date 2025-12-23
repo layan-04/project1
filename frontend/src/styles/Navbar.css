@@ -96,7 +96,6 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
   overflow: hidden;
   z-index: 9999;
-  padding: 12px;
 }
 
 .user-menu .user-email {
@@ -105,9 +104,11 @@
   font-weight: 600;
   text-align: center;
   border-bottom: 1px solid #e6cfc0;
+  padding: 12px;
 }
 
 .user-menu .logout-btn {
+  display:block;
   background: #c8744f;
   color: #ffffff;
   font-weight: 700;
@@ -115,6 +116,8 @@
   letter-spacing: 1px;
   border: none;
   width:100%;
+  text-align: center;
+  padding: 12px;
 }
 
 .user-menu .logout-btn:hover {
