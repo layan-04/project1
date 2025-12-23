@@ -399,4 +399,48 @@ box-sizing: content-box; /* Add this here too */
   .menu-dropdown {
     min-width: 160px;
   }
+
+
+
+  /* Navbar.css - Add to the very bottom */
+
+@media (max-width: 768px) {
+  /* 1. Keep the main container organized */
+  .navbar .container {
+    display: flex;
+    flex-wrap: wrap; /* Allows the nav-links to drop down */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px; /* Adjust padding for clean edges */
+  }
+
+  /* 2. Force the Logo (first element) and Controls to stay side-by-side */
+  .navbar .container > *:not(.nav-links) {
+    flex-shrink: 0; /* Prevents them from being squished */
+    max-width: 50%; /* Ensures they share the top row */
+  }
+
+  /* 3. Fix the Right Controls to stay inline */
+  .right-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap !important; /* Force controls to stay in one line */
+  }
+
+  /* 4. Stop Login/Signup buttons from stacking vertically */
+  .auth-links {
+    display: flex;
+    flex-direction: row !important; /* Override the column rule */
+    gap: 8px;
+  }
+
+  /* Optional: Make auth buttons smaller to fit on phone screens */
+  .auth-links a {
+    padding: 8px 12px;
+    font-size: 0.75em;
+    white-space: nowrap; /* Prevents text from wrapping */
+  }
+}
+
 }
