@@ -1,11 +1,11 @@
 /* ==========================================
-   MAIN LAYOUT (THEME FULLY PRESERVED)
+   MAIN LAYOUT (THEME PRESERVED)
    ========================================== */
 
 .chatbot {
   display: flex;
   height: 100vh;
-  height: 100dvh; /* Fixes mobile browser address bar issues */
+  height: 100dvh; /* Important for mobile height */
   max-width: 1000px;
   margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -22,11 +22,10 @@
   right: 0;
   height: 2px;
   background: linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%);
-  z-index: 5;
 }
 
 /* ==========================================
-   SIDEBAR (STAYS ON LEFT + DUAL SCROLLERS)
+   SIDEBAR (LEFT SIDE + DUAL SCROLLERS)
    ========================================== */
 
 .chat-history {
@@ -35,14 +34,14 @@
   padding: 10px;
   background: var(--bg-secondary);
   
-  /* DUAL SCROLLER LOGIC */
-  overflow-y: auto; /* Vertical scroll */
-  overflow-x: auto; /* Horizontal scroll */
+  /* THE DUAL SCROLLERS LOGIC */
+  overflow-y: auto;  /* Vertical Scroller */
+  overflow-x: auto;  /* Horizontal Scroller */
   
-  height: 100%; /* Changed from 70vh to fill container */
+  height: 100%; /* Fill container height */
   box-sizing: border-box;
   position: relative;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Prevents squishing */
 }
 
 .chat-history::after {
@@ -64,6 +63,7 @@
   text-transform: uppercase;
   position: relative;
   padding-bottom: 8px;
+  white-space: nowrap; /* Keeps header from wrapping */
 }
 
 .chat-history h3::after {
@@ -81,7 +81,8 @@
   list-style: none;
   padding-left: 0;
   margin: 0;
-  min-width: min-content; /* Allows horizontal scrolling if items are wide */
+  display: inline-block; /* Forces the list to expand width for scroller */
+  min-width: 100%;
 }
 
 .chat-history li {
@@ -95,7 +96,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  white-space: nowrap; /* Prevents text from wrapping to a new line */
+  
+  /* PREVENT TEXT WRAPPING (Triggers Horizontal Scroller) */
+  white-space: nowrap; 
 }
 
 .chat-history li strong {
@@ -103,7 +106,7 @@
   font-size: 0.95em;
   color: var(--color-text);
   font-weight: 600;
-  padding-right: 10px;
+  padding-right: 15px; /* Space for delete icon */
 }
 
 .chat-history li.selected {
@@ -112,7 +115,7 @@
 }
 
 /* ==========================================
-   CHAT WINDOW (RIGHT)
+   CHAT WINDOW
    ========================================== */
 
 .chat-window {
@@ -122,7 +125,7 @@
   justify-content: space-between;
   padding: 20px;
   background: var(--bg-primary);
-  height: 100%; /* Changed from 63vh to fill container */
+  height: 100%;
   overflow: hidden;
   position: relative;
 }
@@ -135,8 +138,20 @@
   scroll-behavior: smooth;
 }
 
+/* Scrollbar Style (Your Original) */
+.messages::-webkit-scrollbar,
+.chat-history::-webkit-scrollbar {
+  width: 8px;
+  height: 8px; /* Added for horizontal scroller */
+}
+
+.messages::-webkit-scrollbar-thumb,
+.chat-history::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
 /* ==========================================
-   MESSAGE BUBBLES (ORIGINAL THEME)
+   MESSAGE BUBBLES (YOUR THEME)
    ========================================== */
 
 .user, .bot {
@@ -170,7 +185,6 @@
 .input-area {
   display: flex;
   gap: 12px;
-  padding-top: 10px;
 }
 
 .input-area input {
@@ -193,7 +207,7 @@
 }
 
 /* ==========================================
-   MOBILE FIX (SIDEBAR REMAINS LEFT)
+   MOBILE FIX (Correct Margins & Left Sidebar)
    ========================================== */
 
 @media screen and (max-width: 768px) {
@@ -204,22 +218,16 @@
   }
 
   .chat-history {
-    width: 140px !important; /* Narrow sidebar for mobile */
+    width: 140px !important; /* Narrower for mobile left sidebar */
     min-width: 140px !important;
-    padding: 8px 5px !important;
   }
 
-  /* Hide bulky desktop headers to save space */
+  /* Hide timestamps/headers to keep mobile sidebar clean */
   .chat-history h3, 
   .chat-history h4, 
   .chat-history .timestamp, 
   .chat-history::after {
     display: none !important;
-  }
-
-  .chat-history li {
-    padding: 10px 8px !important;
-    font-size: 0.85em;
   }
 
   .chat-window {
@@ -228,9 +236,5 @@
 
   .user, .bot {
     max-width: 90% !important;
-  }
-  
-  .input-area input {
-    font-size: 16px; /* Prevents auto-zoom on iOS */
   }
 }
