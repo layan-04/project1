@@ -290,87 +290,88 @@
 }
 
 /* ==========================================
-   FULLY FIXED RESPONSIVE LAYOUT
-   ========================================== */
-/* ==========================================
-   FULLY FIXED RESPONSIVE LAYOUT
+   MOBILE-FIRST CHATBOT FIX
    ========================================== */
 
 @media screen and (max-width: 768px) {
   .chatbot {
-    flex-direction: column !important; /* Stack sidebar on top of chat */
-    height: 100vh !important; /* Force full screen height */
+    flex-direction: column !important;
+    height: 100dvh !important; /* Uses dynamic viewport height to fix mobile browser bars */
     max-width: 100% !important;
+    overflow: hidden;
   }
 
-  /* 1. Sidebar becomes a small top-bar with horizontal scroll */
+  /* 1. Sidebar becomes a slim, horizontal scrollable bar at the top */
   .chat-history {
     width: 100% !important;
-    height: 60px !important; /* Compact size for mobile top */
-    min-height: 60px !important;
-    padding: 5px 10px !important;
+    height: 70px !important;
+    min-height: 70px !important;
+    padding: 8px !important;
     border-right: none !important;
     border-bottom: 2px solid var(--border-color);
-    overflow-x: auto !important; /* Allow horizontal swiping of history */
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    overflow-x: auto !important;
     overflow-y: hidden !important;
-    display: flex;
-    align-items: center;
     gap: 10px;
   }
 
-  .chat-history h3, .chat-history h4, .chat-history .new-convo-icon {
-    display: none !important; /* Hide titles to save vertical space */
+  /* Hide labels and decorative lines to save space on phones */
+  .chat-history h3, 
+  .chat-history h4, 
+  .chat-history::after {
+    display: none !important;
   }
 
   .chat-history ul {
-    display: flex; /* Turn history list into a row */
+    display: flex;
     flex-direction: row;
-    gap: 8px;
+    gap: 10px;
   }
 
   .chat-history li {
-    white-space: nowrap; /* Keep history items on one line */
-    padding: 8px 15px !important;
+    flex-shrink: 0; /* Prevents history items from squishing */
     margin-bottom: 0 !important;
+    padding: 8px 12px !important;
     font-size: 0.8em;
+    white-space: nowrap;
   }
 
-  /* 2. Chat window takes the rest of the screen */
+  /* 2. Main Chat Window fills the remaining space */
   .chat-window {
     flex-grow: 1;
-    height: calc(100vh - 60px) !important; /* Screen minus the top history bar */
-    padding: 10px !important;
+    height: calc(100% - 70px) !important;
+    padding: 15px !important;
     display: flex;
     flex-direction: column;
   }
 
   .messages {
     flex-grow: 1;
-    max-height: none !important; /* Let flexbox handle height */
-    overflow-y: auto;
-    padding-bottom: 20px;
+    max-height: none !important; 
+    overflow-y: auto !important;
+    padding-bottom: 10px;
   }
 
-  /* 3. Adjust Message Bubbles for small screens */
+  /* 3. Wider bubbles and better input for thumbs */
   .user, .bot {
-    max-width: 90% !important; /* Wider bubbles on mobile */
-    font-size: 0.9em;
-    padding: 10px 14px !important;
+    max-width: 90% !important;
+    font-size: 0.95em;
   }
 
-  /* 4. Fix Input Area */
   .input-area {
     padding: 10px 0;
-    background: var(--bg-primary);
+    gap: 8px !important;
   }
 
   .input-area input {
-    padding: 10px !important;
-    font-size: 16px; /* Prevents iOS auto-zoom on focus */
+    font-size: 16px !important; /* Important: Prevents iOS from zooming in on focus */
+    padding: 12px !important;
   }
 
   .input-area button {
-    padding: 10px 15px !important;
+    padding: 12px 18px !important;
     font-size: 0.8em !important;
   }
 }
