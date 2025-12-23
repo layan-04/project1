@@ -292,45 +292,85 @@
 /* ==========================================
    FULLY FIXED RESPONSIVE LAYOUT
    ========================================== */
+/* ==========================================
+   FULLY FIXED RESPONSIVE LAYOUT
+   ========================================== */
 
 @media screen and (max-width: 768px) {
   .chatbot {
-    flex-direction: column;
-    height: auto !important;
-    max-width: 100%;
+    flex-direction: column !important; /* Stack sidebar on top of chat */
+    height: 100vh !important; /* Force full screen height */
+    max-width: 100% !important;
   }
 
+  /* 1. Sidebar becomes a small top-bar with horizontal scroll */
   .chat-history {
     width: 100% !important;
-    height: auto !important;
-    max-height: 30vh;
+    height: 60px !important; /* Compact size for mobile top */
+    min-height: 60px !important;
+    padding: 5px 10px !important;
     border-right: none !important;
     border-bottom: 2px solid var(--border-color);
-    overflow-y: auto;
+    overflow-x: auto !important; /* Allow horizontal swiping of history */
+    overflow-y: hidden !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
+  .chat-history h3, .chat-history h4, .chat-history .new-convo-icon {
+    display: none !important; /* Hide titles to save vertical space */
+  }
+
+  .chat-history ul {
+    display: flex; /* Turn history list into a row */
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .chat-history li {
+    white-space: nowrap; /* Keep history items on one line */
+    padding: 8px 15px !important;
+    margin-bottom: 0 !important;
+    font-size: 0.8em;
+  }
+
+  /* 2. Chat window takes the rest of the screen */
   .chat-window {
-    width: 100% !important;
-    height: calc(100vh - 30vh) !important;
-    padding: 12px;
+    flex-grow: 1;
+    height: calc(100vh - 60px) !important; /* Screen minus the top history bar */
+    padding: 10px !important;
+    display: flex;
+    flex-direction: column;
   }
 
   .messages {
-    max-height: calc(100vh - 30vh - 90px) !important;
+    flex-grow: 1;
+    max-height: none !important; /* Let flexbox handle height */
     overflow-y: auto;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .chat-history {
-    max-height: 25vh !important;
+    padding-bottom: 20px;
   }
 
-  .chat-window {
-    height: calc(100vh - 25vh) !important;
+  /* 3. Adjust Message Bubbles for small screens */
+  .user, .bot {
+    max-width: 90% !important; /* Wider bubbles on mobile */
+    font-size: 0.9em;
+    padding: 10px 14px !important;
   }
 
-  .messages {
-    max-height: calc(100vh - 25vh - 90px) !important;
+  /* 4. Fix Input Area */
+  .input-area {
+    padding: 10px 0;
+    background: var(--bg-primary);
+  }
+
+  .input-area input {
+    padding: 10px !important;
+    font-size: 16px; /* Prevents iOS auto-zoom on focus */
+  }
+
+  .input-area button {
+    padding: 10px 15px !important;
+    font-size: 0.8em !important;
   }
 }
