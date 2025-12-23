@@ -198,60 +198,36 @@
   line-height: 1;
 }
 
-/* Restart Button - Redesigned for a high-tech "Cyber" look */
-.restart-button {
-  padding: 18px 40px;               /* Larger padding for a more important feel */
-  background: #1a1a1a;              /* Dark base color to make the border pop */
-  color: var(--color-secondary);    /* Text uses the secondary green/accent color */
-  border: 2px solid var(--color-secondary); /* Solid accent border */
+/* Restart Button */
+.restart_button {
+  /* Size and Alignment */
+  padding: 12px 24px;
+  display: block;
+  margin: 20px auto;
+  border: none;
   cursor: pointer;
-  font-size: 1.1em;
-  font-weight: 800;                 /* Extra bold */
+
+  /* Colors - Automatically follows your theme */
+  background: var(--color-primary); 
+  color: #fff;
+
+  /* Style - Geometric but simple */
+  font-family: inherit;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 3px;              /* Spaced out letters */
-  position: relative;
-  overflow: hidden;                 /* Keeps animations inside the button */
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth "snap" transition */
+  letter-spacing: 1px;
   
-  /* Geometric "sharded" shape: Slanted top-right and bottom-left */
-  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
-  
-  box-shadow: 0 0 0 var(--color-secondary); /* No glow by default */
+  /* The "Corner Cut" - Just one simple design element */
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+
+  /* Hover effect - Just a slight move */
+  transition: transform 0.2s ease;
 }
 
-/* The "Glow" effect that slides across on hover */
-.restart-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg, 
-    transparent, 
-    rgba(122, 155, 118, 0.4), 
-    transparent
-  );
-  transition: left 0.6s ease;
+.restart_button:hover {
+  transform: translateY(-2px);
 }
 
-/* Hover State */
-.restart-button:hover {
-  background: var(--color-secondary); /* Fills button with color */
-  color: #1a1a1a;                    /* Flips text to dark for contrast */
-  box-shadow: 0 0 20px rgba(122, 155, 118, 0.6); /* Adds a neon glow */
-  transform: scale(1.05);            /* Slightly grows the button */
-}
-
-.restart-button:hover::before {
-  left: 100%;                        /* Triggers the light-sweep animation */
-}
-
-/* Active State (When clicked) */
-.restart-button:active {
-  transform: scale(0.98);            /* Slight "press" effect */
-}
 /* RESPONSIVE MOBILE FIX */
 
 @media (max-width: 480px) {
