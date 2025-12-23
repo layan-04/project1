@@ -1,116 +1,112 @@
-/* ============================================
-   NAVBAR BASE
-   ============================================ */
+/* NAVBAR BASE */
 .navbar {
-  background: var(--bg-primary);
-  border-bottom: 2px solid var(--border-color);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  position: relative;
+  background: var(--bg-primary);      /* Sets background color from your theme variables */
+  border-bottom: 2px solid var(--border-color); /* Adds a subtle solid line at the bottom */
+  font-family: 'Segoe UI';       /* Clean, modern font stack */
+  position: relative;                 /* Necessary anchor for the glowing line below */
 }
 
+/* The glowing accent line that sits on the bottom border */
 .navbar::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
+  content: '';                        /* Makes the pseudo-element appear */
+  position: absolute;                 /* Places it relative to the navbar */
+  bottom: -2px;                       /* Aligns it perfectly with the border-bottom */
+  left: 0; right: 0;                  /* Stretches it across the full width */
+  height: 2px;                        /* Thickness of the glow */
+  /* Creates a neon beam effect that fades out at the edges */
   background: linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%);
 }
 
 .navbar .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px 24px;
+  display: flex;                      /* Aligns Logo, Links, and Controls in a row */
+  justify-content: space-between;     /* Pushes Logo to left, Links to middle, Controls to right */
+  align-items: center;                /* Centers all items vertically */
+  max-width: 1200px;                  /* Prevents the navbar from being too wide on huge monitors */
+  margin: 0 auto;                     /* Centers the container box on the page */
+  padding: 16px 24px;                 /* Internal spacing for height and side breathing room */
 }
 
 .navbar h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  white-space: nowrap;
+  margin: 0;                          /* Removes default browser spacing */
+  font-size: 1.5rem;                  /* Sets logo text size */
+  white-space: nowrap;                /* Prevents logo name from breaking into two lines */
 }
 
-/* ============================================
-   NAVIGATION LINKS (Desktop Only)
-   ============================================ */
+/* NAVIGATION LINKS (Middle Section) */
 .nav-links {
-  display: flex;
-  gap: 12px;
+  display: flex;                      /* Aligns links horizontally */
+  gap: 12px;                          /* Space between each link */
 }
 
 .nav-links a {
-  text-decoration: none;
-  color: var(--color-text);
-  font-weight: 600;
-  font-size: 0.9em;
-  padding: 12px 18px;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  text-decoration: none;              /* Removes default blue underline */
+  color: var(--color-text);           /* Theme-aware text color */
+  font-weight: 600;                   /* Slightly bold */
+  font-size: 0.9em;                   /* Slightly smaller text for professional look */
+  padding: 12px 18px;                 /* Clickable area size */
+  transition: all 0.2s ease;          /* Smooth hover animations */
+  text-transform: uppercase;          /* ALL CAPS look */
+  letter-spacing: 1px;                /* Modern spaced-out letters */
 }
 
-/* ============================================
-   RIGHT CONTROLS
-   ============================================ */
+/* RIGHT CONTROLS (Auth & Menus) */
 .right-controls {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  display: flex;                      /* Aligns Auth links and Icons in a row */
+  align-items: center;                /* Vertically centers icons and text */
+  gap: 15px;                          /* Space between login and menu icons */
 }
 
 .auth-links {
-  display: flex;
-  gap: 8px;
+  display: flex;                      /* Puts Login and Sign Up side-by-side */
+  gap: 8px;                           /* Space between the two buttons */
 }
 
 .auth-links a {
   text-decoration: none;
-  color: #fef8f4;
-  font-weight: 700;
-  padding: 10px 20px;
+  color: #fef8f4;                     /* Near-white text for the buttons */
+  font-weight: 700;                   /* Bold text */
+  padding: 10px 20px;                 /* Button size */
   text-transform: uppercase;
   font-size: 0.8em;
-  white-space: nowrap;
+  white-space: nowrap;                /* Stops buttons from squishing */
 }
 
+/* Assigns different gradients to Login vs Sign Up */
 .auth-links a:first-child { background: var(--gradient-secondary); }
 .auth-links a:last-child { background: var(--gradient-primary); }
 
 .user-icon {
-  box-sizing: content-box;
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--color-primary);
-  display: flex;
+  box-sizing: content-box;            /* Ensures border doesn't shrink the 40px width */
+  width: 40px;                        /* Fixed width for a square icon box */
+  height: 40px;                       /* Fixed height */
+  border: 2px solid var(--color-primary); /* Themed border for the user profile */
+  display: flex;                      /* Centers the icon inside the box */
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: pointer;                    /* Shows hand icon on hover */
 }
 
-/* === USER DROPDOWN VISUAL FIX (NO LAYOUT CHANGE) === */
+/* USER DROPDOWN (Profile Menu) */
 .user-menu .dropdown {
-  background: #fffaf5;
-  border: 2px solid #d8b8a4;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
-  z-index: 9999;
+  background: #fffaf5;                /* Warm paper-white background */
+  border: 2px solid #d8b8a4;          /* Soft brown border */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18); /* Deep shadow for a "floating" look */
+  overflow: hidden;                   /* Ensures children don't bleed past borders */
+  z-index: 9999;                      /* Keeps menu above all other content */
 }
 
 .user-menu .user-email {
   background: #fffaf5;
-  color: #6a4a3c;
+  color: #6a4a3c;                     /* Muted brown for email text */
   font-weight: 600;
-  text-align: center;
-  border-bottom: 1px solid #e6cfc0;
-  padding: 12px;
+  text-align: center;                 /* Centers email in the menu */
+  border-bottom: 1px solid #e6cfc0;   /* Divider line */
+  padding: 12px;                      /* Padding around email */
 }
 
 .user-menu .logout-btn {
-  display:block;
-  background: #c8744f;
+  display:block;                      /* Button takes full width of menu */
+  background: #c8744f;                /* Brand orange color */
   color: #ffffff;
   font-weight: 700;
   text-transform: uppercase;
@@ -122,33 +118,34 @@
 }
 
 .user-menu .logout-btn:hover {
-  background: #b16442;
+  background: #b16442;                /* Darkens button on hover */
 }
 
+/* HAMBURGER MENU (Menu Icon) */
 .hamburger-icon {
   box-sizing: content-box;
-  width: 28px;
-  height: 20px;
-  padding: 8px;
-  border: 2px solid var(--color-secondary);
+  width: 28px;                        /* Width of the 3 lines */
+  height: 20px;                       /* Height of the icon area */
+  padding: 8px;                       /* Space around the lines */
+  border: 2px solid var(--color-secondary); /* Accent border around hamburger */
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: column;             /* Stacks the lines vertically */
+  justify-content: space-between;     /* Creates even space between top, mid, and bot line */
   cursor: pointer;
 }
 
 .hamburger-icon .line {
-  height: 3px;
-  background: var(--color-secondary);
+  height: 3px;                        /* Thickness of the hamburger lines */
+  background: var(--color-secondary); /* Line color */
 }
 
-/* === FEEDBACK DROPDOWN VISUAL FIX (NO LAYOUT CHANGE) === */
+/* FEEDBACK/MENU DROPDOWN */
 .hamburger-menu .menu-dropdown {
   background: #fffaf5;
   border: 2px solid #d8b8a4;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
   z-index: 9999;
-  padding: 12px;
+  padding: 12px;                      /* Internal spacing */
 }
 
 .hamburger-menu .menu-dropdown a {
@@ -159,47 +156,45 @@
 }
 
 .hamburger-menu .menu-dropdown a:hover {
-  background: #f2e4da;
+  background: #f2e4da;                /* Subtle highlight on hover */
 }
 
-/* ============================================
-   MOBILE FIX (ONE LINE)
-   ============================================ */
+/* MOBILE FIX: Adjustments for screens 768px and smaller*/
 @media (max-width: 768px) {
   .navbar .container {
-    padding: 10px 15px !important;
-    flex-wrap: nowrap !important;
+    padding: 10px 15px !important;    /* Tighter padding on mobile */
+    flex-wrap: nowrap !important;     /* Forces items to stay in one row */
   }
 
-  /* 1. Hide middle links on phone - they won't fit! */
+  /* Hides middle links because there is no room on phones */
   .nav-links {
     display: none !important; 
   }
 
-  /* 2. Shrink Logo */
+  /* Shrinks the logo text size */
   .navbar h1 {
     font-size: 1.1rem !important;
   }
 
-  /* 3. Ensure Right Section stays horizontal */
+  /* Tightens the space between right-side controls */
   .right-controls {
     gap: 8px !important;
   }
 
   .auth-links {
-    flex-direction: row !important;
-    gap: 4px !important;
+    flex-direction: row !important;   /* Keeps Login/Signup side-by-side */
+    gap: 4px !important;              /* Very tight gap */
   }
 
+  /* Shrinks Auth buttons for small screens */
   .auth-links a {
     padding: 8px 12px !important;
     font-size: 0.65rem !important;
     letter-spacing: 0px !important;
   }
 
-  /* 4. Shrink Icons */
+  /* Shrinks the User and Hamburger icons using scaling */
   .user-icon, .hamburger-icon {
     transform: scale(0.85);
   }
-
 }
