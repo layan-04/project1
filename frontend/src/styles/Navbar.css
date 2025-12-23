@@ -1,19 +1,6 @@
-/* ==========================================
-   VARIABLES EXPECTED
-   ========================================== */
-:root {
-  --bg-primary: #fdf6f1;
-  --border-color: #d8b8a4;
-  --color-primary: #c8744f;
-  --color-secondary: #7fa37c;
-  --color-text: #6a4a3c;
-  --gradient-primary: linear-gradient(135deg, #c8744f, #b16442);
-  --gradient-secondary: linear-gradient(135deg, #7fa37c, #5f8c5b);
-}
-
-/* ==========================================
+/* ============================================
    NAVBAR BASE
-   ========================================== */
+   ============================================ */
 .navbar {
   background: var(--bg-primary);
   border-bottom: 2px solid var(--border-color);
@@ -28,12 +15,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--color-primary) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%);
 }
 
 .navbar .container {
@@ -45,9 +27,15 @@
   padding: 16px 24px;
 }
 
-/* ==========================================
-   NAV LINKS
-   ========================================== */
+.navbar h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
+/* ============================================
+   NAVIGATION LINKS (Desktop Only)
+   ============================================ */
 .nav-links {
   display: flex;
   gap: 12px;
@@ -59,145 +47,20 @@
   font-weight: 600;
   font-size: 0.9em;
   padding: 12px 18px;
+  transition: all 0.2s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-/* ==========================================
+/* ============================================
    RIGHT CONTROLS
-   ========================================== */
+   ============================================ */
 .right-controls {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-/* ==========================================
-   USER ICON
-   ========================================== */
-.user-menu {
-  position: relative;
-}
-
-.user-icon {
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fffaf5;
-  cursor: pointer;
-}
-
-/* ==========================================
-   USER DROPDOWN (IMAGE 1)
-   ========================================== */
-.dropdown {
-  position: absolute;
-  top: 52px;
-  right: 0;
-
-  width: 230px;
-  background: #fffaf5;
-  border: 2px solid var(--border-color);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 999;
-}
-
-.user-email {
-  padding: 14px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--color-text);
-  background: #fffaf5;
-  border-bottom: 1px solid #e6cfc0;
-  text-align: center;
-}
-
-.logout-btn {
-  all: unset;
-  cursor: pointer;
-
-  background: #c8744f;
-  color: #ffffff;
-  text-align: center;
-
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-
-  padding: 14px 0;
-}
-
-.logout-btn:hover {
-  background: #b16442;
-}
-
-/* ==========================================
-   HAMBURGER ICON
-   ========================================== */
-.hamburger-menu {
-  position: relative;
-}
-
-.hamburger-icon {
-  width: 28px;
-  height: 20px;
-  padding: 8px;
-  border: 2px solid var(--color-secondary);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  background: #fffaf5;
-}
-
-.hamburger-icon .line {
-  height: 3px;
-  background: var(--color-secondary);
-}
-
-/* ==========================================
-   FEEDBACK DROPDOWN (IMAGE 2)
-   ========================================== */
-.menu-dropdown {
-  position: absolute;
-  top: 52px;
-  right: 0;
-
-  width: 220px;
-  background: #fffaf5;
-  border: 2px solid var(--border-color);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  z-index: 999;
-}
-
-.menu-dropdown a {
-  display: block;
-  padding: 16px;
-
-  color: var(--color-text);
-  text-decoration: none;
-
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.menu-dropdown a:hover {
-  background: #f2e4da;
-}
-
-/* ==========================================
-   AUTH LINKS
-   ========================================== */
 .auth-links {
   display: flex;
   gap: 8px;
@@ -210,26 +73,127 @@
   padding: 10px 20px;
   text-transform: uppercase;
   font-size: 0.8em;
+  white-space: nowrap;
 }
 
-.auth-links a:first-child {
-  background: var(--gradient-secondary);
+.auth-links a:first-child { background: var(--gradient-secondary); }
+.auth-links a:last-child { background: var(--gradient-primary); }
+
+.user-icon {
+  box-sizing: content-box;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.auth-links a:last-child {
-  background: var(--gradient-primary);
+.hamburger-icon {
+  box-sizing: content-box;
+  width: 28px;
+  height: 20px;
+  padding: 8px;
+  border: 2px solid var(--color-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* ==========================================
-   MOBILE
-   ========================================== */
+.hamburger-icon .line {
+  height: 3px;
+  background: var(--color-secondary);
+}
+
+/* ============================================
+   MOBILE FIX (ONE LINE)
+   ============================================ */
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
+  .navbar .container {
+    padding: 10px 15px !important;
+    flex-wrap: nowrap !important;
   }
 
-  .user-icon,
-  .hamburger-icon {
+  /* 1. Hide middle links on phone - they won't fit! */
+  .nav-links {
+    display: none !important; 
+  }
+
+  /* 2. Shrink Logo */
+  .navbar h1 {
+    font-size: 1.1rem !important;
+  }
+
+  /* 3. Ensure Right Section stays horizontal */
+  .right-controls {
+    gap: 8px !important;
+  }
+
+  .auth-links {
+    flex-direction: row !important;
+    gap: 4px !important;
+  }
+
+  .auth-links a {
+    padding: 8px 12px !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 0px !important;
+  }
+
+  /* 4. Shrink Icons */
+  .user-icon, .hamburger-icon {
     transform: scale(0.85);
   }
+
+
+  /* === USER DROPDOWN VISUAL FIX (NO LAYOUT CHANGE) === */
+.user-menu .dropdown {
+  background: #fffaf5;
+  border: 2px solid #d8b8a4;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.user-menu .user-email {
+  background: #fffaf5;
+  color: #6a4a3c;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #e6cfc0;
+}
+
+.user-menu .logout-btn {
+  background: #c8744f;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+}
+
+.user-menu .logout-btn:hover {
+  background: #b16442;
+}
+
+
+/* === FEEDBACK DROPDOWN VISUAL FIX (NO LAYOUT CHANGE) === */
+.hamburger-menu .menu-dropdown {
+  background: #fffaf5;
+  border: 2px solid #d8b8a4;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  z-index: 9999;
+}
+
+.hamburger-menu .menu-dropdown a {
+  color: #6a4a3c;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hamburger-menu .menu-dropdown a:hover {
+  background: #f2e4da;
+}
+
 }
