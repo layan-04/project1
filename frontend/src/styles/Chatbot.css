@@ -301,88 +301,68 @@
 /* ==========================================
    MOBILE-FIRST CHATBOT FIX
    ========================================== */
-
 @media screen and (max-width: 768px) {
   .chatbot {
-    flex-direction: column !important;
+    flex-direction: row !important;   /* KEEP LEFT SIDEBAR */
     height: 100dvh !important;
     max-width: 100% !important;
-    margin: 0 !important;   /* added */
+    margin: 0 !important;
     overflow: hidden;
   }
 
-
-  /* 1. Sidebar becomes a slim, horizontal scrollable bar at the top */
+  /* LEFT SIDEBAR ON MOBILE */
   .chat-history {
-    width: 100% !important;
-    height: 70px !important;
-    min-height: 70px !important;
+    width: 150px !important;
+    min-width: 150px !important;
+    height: 100% !important;
     padding: 8px !important;
-    border-right: none !important;
-    border-bottom: 2px solid var(--border-color);
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    gap: 10px;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    border-right: 2px solid var(--border-color);
+    border-bottom: none !important;
+
+    display: block !important;
   }
 
-  /* Hide labels and decorative lines to save space on phones */
-  .chat-history h3, 
-  .chat-history h4, 
-  .chat-history::after {
+  /* Hide headers to save space */
+  .chat-history h3,
+  .chat-history h4,
+  .chat-history .timestamp {
     display: none !important;
   }
 
   .chat-history ul {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+    display: block !important;
   }
 
   .chat-history li {
-    flex-shrink: 0; /* Prevents history items from squishing */
-    margin-bottom: 0 !important;
-    padding: 8px 12px !important;
+    padding: 8px 10px !important;
     font-size: 0.8em;
-    white-space: nowrap;
+    white-space: normal !important;
   }
 
-  /* 2. Main Chat Window fills the remaining space */
+  /* CHAT WINDOW */
   .chat-window {
     flex-grow: 1;
-    height: calc(100% - 70px) !important;
-    padding: 15px !important;
-    display: flex;
-    flex-direction: column;
+    height: 100% !important;
+    padding: 12px !important;
   }
 
   .messages {
     flex-grow: 1;
-    max-height: none !important; 
     overflow-y: auto !important;
-    padding-bottom: 10px;
   }
 
-  /* 3. Wider bubbles and better input for thumbs */
-  .user, .bot {
+  .user,
+  .bot {
     max-width: 90% !important;
     font-size: 0.95em;
   }
 
   .input-area {
-    padding: 10px 0;
+    padding: 8px 0 !important;
     gap: 8px !important;
-  }
-
-  .input-area input {
-    font-size: 16px !important; /* Important: Prevents iOS from zooming in on focus */
-    padding: 12px !important;
-  }
-
-  .input-area button {
-    padding: 12px 18px !important;
-    font-size: 0.8em !important;
   }
 }
