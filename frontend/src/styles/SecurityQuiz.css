@@ -299,3 +299,16 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 20px var(--shadow);
 }
+
+
+
+/* Add to the bottom of these files */
+@media (max-width: 480px) {
+  .quiz-container,
+  .signup,
+  .login {
+    /* Reduce padding from 45px 40px to something mobile-friendly */
+    padding: 30px 20px; 
+    width: 100%; /* Ensure it takes full available width */
+  }
+}
