@@ -199,7 +199,7 @@
 }
 
 /* Restart Button */
-.restart_button {
+.restart-button {
   /* Size and Alignment */
   padding: 12px 24px;
   display: block;
@@ -224,7 +224,7 @@
   transition: transform 0.2s ease;
 }
 
-.restart_button:hover {
+.restart-button:hover {
   transform: translateY(-2px);
 }
 
