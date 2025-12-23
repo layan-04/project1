@@ -1,160 +1,170 @@
+/* MAIN CONTAINER: The outer box for the URL Scanner tool */
 .url-scanner-container {
-  padding: 30px;
-  max-width: 500px;
-  margin: auto;
-  background: var(--bg-primary);
-  border-radius: 0;
-  box-shadow: 0 8px 24px var(--shadow);
-  position: relative;
+  padding: 30px;                    /* Inner space around the content */
+  max-width: 500px;                 /* Sets a maximum width for the box */
+  margin: auto;                     /* Centers the container horizontally */
+  background: var(--bg-primary);    /* Theme-based light background */
+  border-radius: 0;                 /* Sharp, non-rounded corners */
+  box-shadow: 0 8px 24px var(--shadow); /* Soft shadow for depth */
+  position: relative;               /* Anchor for the pseudo-element glow bar */
 }
 
+/* Glowing top accent line */
 .url-scanner-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
+  content: '';                      /* Required to render the pseudo-element */
+  position: absolute;               /* Sticks the bar to the top */
+  top: 0; left: 0; right: 0;
+  height: 3px;                      /* Thickness of the line */
+  /* Gradient that glows in the center and fades to transparent on sides */
   background: linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%);
 }
 
 .url-scanner-container h2 {
-  margin: 0 0 20px 0;
-  font-size: 1.3em;
-  color: var(--color-text);
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  position: relative;
-  padding-bottom: 12px;
+  margin: 0 0 20px 0;               /* Spacing below the title */
+  font-size: 1.3em;                 /* Title text size */
+  color: var(--color-text);         /* Dark theme-based text color */
+  font-weight: 700;                 /* Bold text */
+  letter-spacing: 3px;              /* Spaced out "tech" typography */
+  text-transform: uppercase;        /* ALL CAPS */
+  position: relative;               /* Anchor for the underline */
+  padding-bottom: 12px;             /* Gap for the underline */
 }
 
+/* Geometric underline for the H2 */
 .url-scanner-container h2::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: var(--color-primary);
+  bottom: 0; left: 0;
+  width: 60px; height: 3px;         /* Short, thick underline */
+  background: var(--color-primary); /* Primary brand color */
+  /* Creates a slanted trapezoid shape */
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
 
+/* FORM & INPUT STYLES */
 .url-scanner-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 24px;
+  display: flex;                    /* Uses flexbox to stack items */
+  flex-direction: column;           /* Stacks input and button vertically */
+  gap: 16px;                        /* Consistent space between form items */
+  margin-bottom: 24px;              /* Space before the result box appears */
 }
 
 .url-scanner-form input {
-  width: 100%;
-  padding: 14px 18px;
-  border: none;
-  border-bottom: 3px solid var(--border-color);
-  border-radius: 0;
-  font-size: 1em;
-  background: var(--bg-secondary);
-  color: var(--color-text);
-  transition: all 0.3s ease;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 500;
-  box-sizing: border-box;
+  width: 100%;                      /* Spans full width of the container */
+  padding: 14px 18px;               /* Sizing for the typing area */
+  border: none;                     /* Removes standard border */
+  border-bottom: 3px solid var(--border-color); /* Modern bottom-only border */
+  border-radius: 0;                 /* Sharp corners */
+  font-size: 1em;                   /* Standard text size */
+  background: var(--bg-secondary);  /* Slightly different background for inputs */
+  color: var(--color-text);         /* Main text color */
+  transition: all 0.3s ease;        /* Smooth transition for focus effects */
+  font-family: 'Segoe UI';     /* Font stack */
+  font-weight: 500;                 /* Medium weight for typed text */
+  box-sizing: border-box;           /* Includes padding in the width calculation */
 }
 
+/* State when user clicks inside the input */
 .url-scanner-form input:focus {
-  outline: none;
-  border-bottom-color: var(--color-primary);
-  background: var(--bg-white);
-  box-shadow: 0 4px 12px var(--shadow);
+  outline: none;                    /* Removes default browser outline */
+  border-bottom-color: var(--color-primary); /* Changes border color to brand color */
+  background: var(--bg-white);      /* Changes background color on focus */
+  box-shadow: 0 4px 12px var(--shadow); /* Adds a subtle glow effect */
 }
 
 .url-scanner-form input::placeholder {
-  color: var(--color-text-muted);
-  font-weight: 400;
+  color: var(--color-text-muted);   /* Faded color for helper text */
+  font-weight: 400;                 /* Thinner weight for placeholder */
 }
 
+/* BUTTON STYLES */
 .url-scanner-form button {
-  padding: 14px 28px;
-  background: var(--gradient-primary);
-  color: #fef8f4;
+  padding: 14px 28px;               /* Button height and width padding */
+  background: var(--gradient-primary); /* The primary color gradient */
+  color: #fef8f4;                   /* Off-white text color */
   border: none;
   border-radius: 0;
-  cursor: pointer;
+  cursor: pointer;                  /* Hand icon on hover */
   font-size: 1em;
-  font-weight: 700;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-weight: 700;                 /* Bold button text */
+  transition: all 0.2s ease;        /* Quick transition for interaction */
+  text-transform: uppercase;        /* ALL CAPS */
+  letter-spacing: 2px;              /* Spaced out letters */
+  /* Complex geometric cut (sharded look) */
   clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
-  position: relative;
-  overflow: hidden;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;               /* Anchor for the shine animation */
+  overflow: hidden;                 /* Keeps the shine inside the button */
+  font-family: 'Segoe UI';
 }
 
+/* The shine effect that slides across the button */
 .url-scanner-form button::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
+  top: 0; left: -100%;              /* Starts hidden to the left */
+  width: 100%; height: 100%;
   background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-  transition: left 0.5s ease;
+  transition: left 0.5s ease;       /* Time it takes for the shine to move */
 }
 
+/* Triggers the shine movement on hover */
 .url-scanner-form button:hover:not(:disabled)::before {
-  left: 100%;
+  left: 100%;                       /* Slides the shine to the right */
 }
 
 .url-scanner-form button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--shadow);
+  transform: translateY(-2px);      /* Button lifts up slightly */
+  box-shadow: 0 6px 20px var(--shadow); /* Shadow deepens on hover */
 }
 
 .url-scanner-form button:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(0);         /* Returns to normal on click */
 }
 
+/* Button appearance when it is turned off */
 .url-scanner-form button:disabled {
-  background: var(--border-color);
-  cursor: not-allowed;
-  opacity: 0.6;
+  background: var(--border-color);  /* Changes to neutral grey */
+  cursor: not-allowed;              /* Shows "blocked" icon */
+  opacity: 0.6;                     /* Faded look */
 }
 
-/* Result Box */
+/* RESULT BOX (Safe/Unsafe Feedback) */
 .result-box {
-  padding: 20px;
-  margin-top: 20px;
-  border-left: 4px solid;
+  padding: 20px;                    /* Internal space */
+  margin-top: 20px;                 /* Gap between form and result */
+  border-left: 4px solid;           /* Thick colored line on the left */
+  /* Slanted cut on the bottom right corner */
   clip-path: polygon(0 0, 100% 0, 100% 90%, 95% 100%, 0 100%);
-  animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy entrance animation */
+  font-family: 'Segoe UI', ...;
 }
 
+/* Entrance animation logic */
 @keyframes slideIn {
   from {
-    opacity: 0;
-    transform: translateX(-30px);
+    opacity: 0;                     /* Starts invisible */
+    transform: translateX(-30px);   /* Starts 30px to the left */
   }
   to {
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 1;                     /* Ends visible */
+    transform: translateX(0);       /* Ends at original position */
   }
 }
 
+/* Green styling for safe URLs */
 .result-box.safe {
-  background: rgba(122, 155, 118, 0.15);
-  border-left-color: var(--color-secondary);
+  background: rgba(122, 155, 118, 0.15); /* Light green tint */
+  border-left-color: var(--color-secondary); /* Sage green border */
 }
 
+/* Red/Orange styling for unsafe URLs */
 .result-box.unsafe {
-  background: rgba(200, 120, 88, 0.15);
-  border-left-color: var(--color-primary);
+  background: rgba(200, 120, 88, 0.15); /* Light terracotta tint */
+  border-left-color: var(--color-primary); /* Primary terracotta border */
 }
 
 .result-box h3 {
-  margin: 0 0 12px 0;
+  margin: 0 0 12px 0;               /* Gap below the status title */
   font-size: 1.1em;
   color: var(--color-text);
   font-weight: 700;
@@ -163,24 +173,21 @@
 }
 
 .result-box p {
-  margin: 8px 0;
+  margin: 8px 0;                    /* Spacing between lines of info */
   color: var(--color-text);
   font-size: 0.95em;
-  line-height: 1.6;
+  line-height: 1.6;                 /* Readable text spacing */
 }
 
+/* Styling for labels like "URL:" or "STATUS:" inside the box */
 .result-box p strong {
-  font-weight: 700;
+  font-weight: 700;                 /* Bold labels */
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.85em;
-  margin-right: 8px;
+  font-size: 0.85em;                /* Smaller font for labels */
+  margin-right: 8px;                /* Gap after the label */
 }
 
-.result-box.safe p strong {
-  color: var(--color-secondary);
-}
-
-.result-box.unsafe p strong {
-  color: var(--color-primary);
-}
+/* Label color based on safety status */
+.result-box.safe p strong { color: var(--color-secondary); }
+.result-box.unsafe p strong { color: var(--color-primary); }
