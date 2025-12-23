@@ -1,5 +1,5 @@
 /* ==========================================
-   MAIN LAYOUT (THEME PRESERVED)
+   MAIN LAYOUT - ORIGINAL THEME PRESERVED
    ========================================== */
 
 .chatbot {
@@ -24,7 +24,7 @@
 }
 
 /* ==========================================
-   SIDEBAR (HISTORY)
+   SIDEBAR - ORIGINAL THEME PRESERVED
    ========================================== */
 
 .chat-history {
@@ -33,7 +33,7 @@
   padding: 10px;
   background: var(--bg-secondary);
   overflow-y: auto;
-  height: 100%; /* Changed to fill container */
+  height: 100%; /* Changed to fill container instead of fixed vh */
   box-sizing: border-box;
   position: relative;
 }
@@ -70,9 +70,20 @@
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
 
+.chat-history h4 {
+  margin: 20px 0 8px;
+  font-size: 0.9em;
+  color: var(--color-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-left: 8px;
+  border-left: 3px solid var(--color-secondary);
+}
+
 .chat-history ul {
   list-style: none;
-  padding: 0;
+  padding-left: 0;
   margin: 0;
 }
 
@@ -95,7 +106,7 @@
 }
 
 /* ==========================================
-   CHAT WINDOW
+   CHAT WINDOW - ORIGINAL THEME PRESERVED
    ========================================== */
 
 .chat-window {
@@ -105,8 +116,9 @@
   justify-content: space-between;
   padding: 20px;
   background: var(--bg-primary);
-  height: 100%; /* Changed to fill container */
+  height: 100%; /* Changed to fill container instead of fixed vh */
   overflow: hidden;
+  position: relative;
 }
 
 .messages {
@@ -114,12 +126,27 @@
   overflow-y: auto;
   margin-bottom: 10px;
   padding-right: 8px;
-  display: flex;
-  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar Styles */
+.messages::-webkit-scrollbar,
+.chat-history::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-track,
+.chat-history::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.messages::-webkit-scrollbar-thumb,
+.chat-history::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
 }
 
 /* ==========================================
-   MESSAGE BUBBLES (YOUR ORIGINAL DESIGNS)
+   MESSAGE BUBBLES - ORIGINAL THEME PRESERVED
    ========================================== */
 
 .user, .bot {
@@ -133,6 +160,7 @@
   background: var(--gradient-primary);
   align-self: flex-end;
   color: #fef8f4;
+  margin-left: auto;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
   border-left: 3px solid var(--color-primary);
 }
@@ -146,14 +174,12 @@
 }
 
 /* ==========================================
-   INPUT AREA
+   INPUT AREA - ORIGINAL THEME PRESERVED
    ========================================== */
 
 .input-area {
   display: flex;
   gap: 12px;
-  background: var(--bg-primary);
-  padding-top: 10px;
 }
 
 .input-area input {
@@ -176,19 +202,22 @@
 }
 
 /* ==========================================
-   THE "SECOND" MOBILE LOOK FIX
+   MOBILE FIX (Correct Margins & Height)
    ========================================== */
 
 @media screen and (max-width: 768px) {
   .chatbot {
     flex-direction: column !important;
-    height: 100dvh !important;
+    height: 100dvh !important; /* Full height on mobile */
+    max-width: 100% !important; /* Removes side margins on phones */
+    margin: 0 !important;
   }
 
+  /* History becomes a horizontal bar to look like your "Second" style */
   .chat-history {
     width: 100% !important;
-    height: 65px !important;
-    min-height: 65px !important;
+    height: 60px !important;
+    min-height: 60px !important;
     padding: 5px 10px !important;
     border-right: none !important;
     border-bottom: 2px solid var(--border-color);
@@ -199,7 +228,7 @@
   }
 
   .chat-history h3, .chat-history h4, .chat-history::after {
-    display: none !important;
+    display: none !important; /* Hides bulky headers on mobile */
   }
 
   .chat-history ul {
@@ -216,11 +245,11 @@
   }
 
   .chat-window {
-    height: calc(100dvh - 65px) !important;
+    height: calc(100dvh - 60px) !important; /* Screen minus history bar */
     padding: 12px !important;
   }
 
   .user, .bot {
-    max-width: 90% !important;
+    max-width: 90% !important; /* Uses more width on small screens */
   }
 }
