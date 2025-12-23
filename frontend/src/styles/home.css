@@ -46,14 +46,18 @@
   gap: 32px;
   max-width: 1400px;
   margin: 0 auto;
+  align-items: stretch;
 }
 
 .tool-card {
   background: var(--bg-primary);
-  border: none;
-  border-radius: 0;
   padding: 32px 28px;
   width: 320px;
+  /* Add these lines for uniformity */
+  display: flex;
+  flex-direction: column;
+  min-height: 350px; /* Adjust this value until they look right */
+  flex-shrink: 0;    /* Prevents cards from squishing on small screens */
   box-shadow: 0 8px 24px var(--shadow);
   transition: all 0.4s ease;
   position: relative;
@@ -126,6 +130,7 @@
   color: #ffffff;
   border: none;
   padding: 14px 24px;
+  margin-top: auto;
   border-radius: 0;
   cursor: pointer;
   font-size: 0.95em;
