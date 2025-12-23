@@ -5,12 +5,15 @@
 .chatbot {
   display: flex;
   height: 100vh;
+  height: 100dvh;          /* added */
   max-width: 1000px;
   margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: var(--bg-primary);
   position: relative;
+  overflow: hidden;       /* added */
 }
+
 
 .chatbot::before {
   content: '';
@@ -32,9 +35,11 @@
   padding: 10px;
   background: var(--bg-secondary);
   overflow-y: auto;
-  height: 70vh;
+  overflow-x: auto;       /* added */
+  height: 100%;           /* changed from 70vh */
   box-sizing: border-box;
   position: relative;
+  flex-shrink: 0;         /* added */
 }
 
 .chat-history::after {
@@ -177,18 +182,20 @@
   justify-content: space-between;
   padding: 20px;
   background: var(--bg-primary);
-  height: 63vh;
+  height: 100%;           /* changed from 63vh */
   overflow: hidden;
   position: relative;
 }
 
+
 .messages {
   flex-grow: 1;
   overflow-y: auto;
-  margin-bottom: 10px;
+  margin-bottom: 15px;    /* was 10px */
   padding-right: 8px;
   scroll-behavior: smooth;
 }
+
 
 /* Scrollbar */
 .messages::-webkit-scrollbar,
@@ -258,7 +265,9 @@
 .input-area {
   display: flex;
   gap: 12px;
+  padding: 10px 0;        /* added */
 }
+
 
 .input-area input {
   flex-grow: 1;
@@ -296,10 +305,12 @@
 @media screen and (max-width: 768px) {
   .chatbot {
     flex-direction: column !important;
-    height: 100dvh !important; /* Uses dynamic viewport height to fix mobile browser bars */
+    height: 100dvh !important;
     max-width: 100% !important;
+    margin: 0 !important;   /* added */
     overflow: hidden;
   }
+
 
   /* 1. Sidebar becomes a slim, horizontal scrollable bar at the top */
   .chat-history {
