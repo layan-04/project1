@@ -96,6 +96,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
   overflow: hidden;
   z-index: 9999;
+  padding: 12px;
 }
 
 .user-menu .user-email {
@@ -113,6 +114,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   border: none;
+  width:100%;
 }
 
 .user-menu .logout-btn:hover {
@@ -141,6 +143,7 @@
   border: 2px solid #d8b8a4;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
   z-index: 9999;
+  padding: 12px;
 }
 
 .hamburger-menu .menu-dropdown a {
