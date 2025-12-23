@@ -1,324 +1,343 @@
-/* ==========================================
-   MAIN LAYOUT
-   ========================================== */
+/* MAIN LAYOUT: The outer container for the entire application */
 
 .chatbot {
-  display: flex; /*Puts the sidebar and the chat window side-by-side.*/
-  /*height: 100vh;*/ /*Uses "Dynamic Viewport Height," which is great for mobile browsers*/
-  height: 80dvh;        
-  max-width: 1000px;
-  margin: 0 auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg-primary);
-  position: relative;
-  overflow: hidden;       /* added */
+  display: flex;                /* Puts Sidebar and Chat Window side-by-side (Horizontal) */
+  height: 80dvh;                /* Dynamic Viewport Height: Adapts to mobile browser address bars */
+  max-width: 1000px;            /* Prevents the chat from stretching too wide on large monitors */
+  margin: 0 auto;               /* Centers the entire chatbot container horizontally */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font stack */
+  background: var(--bg-primary); /* Sets the main background using your CSS variable */
+  position: relative;           /* Anchor point for absolute-positioned decorative elements */
+  overflow: hidden;             /* Ensures nothing inside (like animations) spills outside the container */
 }
 
-
+/* The decorative glowing neon line at the very top of the app */
 .chatbot::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+  content: '';                  /* Required to render a pseudo-element */
+  position: absolute;           /* Places it at the exact top of the .chatbot container */
+  top: 0; 
+  left: 0; 
   right: 0;
-  height: 2px;
+  height: 2px;                  /* The thickness of the glow line */
+  /* Creates a gradient that fades in the middle to create a "light beam" effect */
   background: linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%);
 }
 
-/* ==========================================
-   SIDEBAR
-   ========================================== */
+/* SIDEBAR (Chat History): The left-hand panel containing past conversation titles */
 
 .chat-history {
-  width: 250px;
-  border-right: 2px solid var(--border-color);
-  padding: 10px;
-  background: var(--bg-secondary);
-  overflow-y: auto;
-  overflow-x: auto;       /* added */
-  height: 100%;           /* changed from 70vh */
-  box-sizing: border-box;
-  position: relative;
-  flex-shrink: 0;         /* added */
+  width: 250px;                 /* Fixed width for the sidebar */
+  border-right: 2px solid var(--border-color); /* The vertical separator line */
+  padding: 10px;                /* Space between the border and the content inside */
+  background: var(--bg-secondary); /* A slightly different background to distinguish from chat */
+  overflow-y: auto;             /* Enables vertical scrolling for many chat threads */
+  overflow-x: auto;             /* Enables horizontal scrolling for long titles */
+  height: 100%;                 /* Takes the full height of the .chatbot container */
+  box-sizing: border-box;       /* Includes padding/border in the 250px width calculation */
+  position: relative;           /* Anchor point for the secondary glow line */
+  flex-shrink: 0;               /* Prevents the sidebar from getting squashed when chat content grows */
 }
 
+/* The vertical glowing accent line on the right edge of the sidebar */
 .chat-history::after {
   content: '';
   position: absolute;
-  right: -2px;
-  top: 20%;
-  height: 60%;
+  right: -2px;                  /* Sits exactly on the right border */
+  top: 20%;                     /* Starts 20% down from the top */
+  height: 60%;                  /* Covers 60% of the sidebar's height */
   width: 2px;
+  /* Fades at the top and bottom for a sleek "sci-fi" look */
   background: linear-gradient(180deg, transparent 0%, var(--color-secondary) 50%, transparent 100%);
 }
 
+/* Styling for the "Past Conversations" title */
 .chat-history h3 {
-  margin-bottom: 16px;
-  font-size: 1.3em;
-  color: var(--color-text);
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  position: relative;
-  padding-bottom: 8px;
+  margin-bottom: 16px;          /* Space below the title */
+  font-size: 1.3em;             /* Makes the title slightly larger */
+  color: var(--color-text);     /* Main text color */
+  font-weight: 700;             /* Bold text */
+  letter-spacing: 3px;          /* Extra space between letters for a tech feel */
+  text-transform: uppercase;    /* Converts text to all CAPS */
+  position: relative;           /* Anchor for the underline effect */
+  padding-bottom: 8px;          /* Space between text and the underline */
 }
 
+/* The stylized underline under the Sidebar title */
 .chat-history h3::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 40px;
+  width: 40px;                  /* Short width for the underline */
   height: 3px;
   background: var(--color-primary);
+  /* Creates a slanted geometric shape instead of a boring rectangle */
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
 }
 
+/* Styling for the Date Labels (e.g., "Today", "Monday") */
 .chat-history h4 {
-  margin: 20px 0 8px;
-  font-size: 0.9em;
-  color: var(--color-secondary);
+  margin: 20px 0 8px;           /* Large top margin to separate groups */
+  font-size: 0.9em;             /* Smaller, subtle font size */
+  color: var(--color-secondary);/* Uses secondary theme color */
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  padding-left: 8px;
-  border-left: 3px solid var(--color-secondary);
+  padding-left: 8px;            /* Space for the border-left accent */
+  border-left: 3px solid var(--color-secondary); /* Vertical accent line */
 }
 
+/* Resets the default list styling */
 .chat-history ul {
-  list-style: none;
-  padding-left: 0;
+  list-style: none;             /* Removes bullet points */
+  padding-left: 0;              /* Removes default list indentation */
   margin: 0;
 }
 
+/* Individual Conversation Items (the clickable buttons) */
 .chat-history li {
-  padding: 12px 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-bottom: 6px;
-  position: relative;
+  padding: 12px 10px;           /* Space inside the item */
+  cursor: pointer;              /* Changes cursor to a "hand" to show it is clickable */
+  transition: all 0.2s ease;    /* Smooth animation for hovers and clicks */
+  margin-bottom: 6px;           /* Gap between different chat items */
+  position: relative;           /* Anchor for the sliding sidebar highlight */
+  /* Sharp geometric cut: Slants the bottom-left corner */
   clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%);
-  background: rgba(212, 200, 184, 0.2);
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: rgba(212, 200, 184, 0.2); /* Semi-transparent background */
+  display: flex;                /* Aligns text and icons in a row */
+  justify-content: space-between; /* Pushes text to the left, delete icon to the right */
+  align-items: center;          /* Centers text and icon vertically */
 }
 
+/* The vertical highlight bar that grows when you hover over an item */
 .chat-history li::before {
   content: '';
   position: absolute;
-  left: 0;
+  left: 0; 
   top: 0;
-  width: 3px;
-  height: 0;
+  width: 3px;                   /* Width of the accent bar */
+  height: 0;                    /* Starts at 0 height (hidden) */
   background: var(--color-primary);
-  transition: height 0.3s ease;
+  transition: height 0.3s ease; /* Smoothly grows from top to bottom on hover */
 }
 
+/* Hover effect for the chat item */
 .chat-history li:hover {
-  background: rgba(212, 200, 184, 0.4);
-  transform: translateX(4px);
+  background: rgba(212, 200, 184, 0.4); /* Brightens background on hover */
+  transform: translateX(4px);   /* Makes the item "nudge" to the right */
 }
 
+/* Triggers the height growth of the vertical highlight bar on hover */
 .chat-history li:hover::before {
   height: 100%;
 }
 
+/* Styling for the active/currently selected chat thread */
 .chat-history li.selected {
-  background: rgba(200, 120, 88, 0.2);
-  border-left: 4px solid var(--color-primary);
+  background: rgba(200, 120, 88, 0.2); /* Different color for the active item */
+  border-left: 4px solid var(--color-primary); /* Bold border to show selection */
 }
 
+/* Chat Title text inside the sidebar item */
 .chat-history li strong {
-  display: block;
+  display: block;               /* Ensures it stays on its own block */
   font-size: 0.95em;
   color: var(--color-text);
   font-weight: 600;
 }
 
+/* Timestamp text inside the sidebar item */
 .chat-history li .timestamp {
-  font-size: 0.75em;
+  font-size: 0.75em;            /* Small font for the time */
   color: var(--color-text-light);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 500;
 }
 
+/* The 'X' icon used to delete a conversation */
 .chat-history .delete-icon {
-  opacity: 0;
-  transition: opacity 0.2s ease;
+  opacity: 0;                   /* Hidden by default */
+  transition: opacity 0.2s ease;/* Fades in smoothly */
   margin-left: 10px;
   color: var(--color-primary);
   cursor: pointer;
 }
 
+/* Only show the delete icon when the user hovers over that specific chat thread */
 .chat-history li:hover .delete-icon {
   opacity: 1;
 }
 
+/* The "+" icon for starting a new conversation */
 .chat-history .new-convo-icon {
-  display: block;
-  font-size: 1.4em;
+  display: block;               /* Takes up the whole line */
+  font-size: 1.4em;             /* Makes the "+" large */
   color: var(--color-secondary);
   cursor: pointer;
-  margin-bottom: 16px;
-  text-align: right;
+  margin-bottom: 16px;          /* Space below the icon */
+  text-align: right;            /* Aligns the icon to the right side */
   transition: color 0.2s ease;
 }
 
+/* Changes the color of the "+" icon when hovered */
 .chat-history .new-convo-icon:hover {
   color: var(--color-primary);
 }
 
-/* ==========================================
-   CHAT WINDOW
-   ========================================== */
+/* CHAT WINDOW: The main area where the conversation happens */
 
 .chat-window {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-grow: 1;                 /* Occupies all available space not used by the sidebar */
+  display: flex;                /* Uses Flexbox to stack messages and input */
+  flex-direction: column;       /* Stacks .messages on top of .input-area */
+  justify-content: space-between; /* Ensures input stays at the bottom */
   padding: 20px;
   background: var(--bg-primary);
-  height: 100%;           /* changed from 63vh */
-  overflow: hidden;
+  height: 100%;                 /* Fills the container */
+  overflow: hidden;             /* Keeps internal scrolling inside .messages */
   position: relative;
 }
 
-
+/* The scrollable area containing the actual chat bubbles */
 .messages {
-  flex-grow: 1;
-  overflow-y: auto;
-  margin-bottom: 15px;    /* was 10px */
-  padding-right: 8px;
-  scroll-behavior: smooth;
+  flex-grow: 1;                 /* Grows to fill the space between header and input */
+  overflow-y: auto;             /* Enables vertical scrolling for long conversations */
+  margin-bottom: 15px;          /* Space above the input area */
+  padding-right: 8px;           /* Prevents text from touching the scrollbar */
+  scroll-behavior: smooth;      /* Makes automatic scrolling look professional */
 }
 
+/* SCROLLBAR STYLING: Customizing the scrollbar for Chrome/Safari (Webkit) */
 
-/* Scrollbar */
+/* The overall width of the scrollbar */
 .messages::-webkit-scrollbar,
 .chat-history::-webkit-scrollbar {
   width: 8px;
 }
 
+/* The track (background) of the scrollbar */
 .messages::-webkit-scrollbar-track,
 .chat-history::-webkit-scrollbar-track {
   background: var(--bg-secondary);
 }
 
+/* The handle (thumb) that you drag */
 .messages::-webkit-scrollbar-thumb,
 .chat-history::-webkit-scrollbar-thumb {
+  /* Colorful gradient handle */
   background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
 }
 
+/* Swaps the gradient direction when hovering over the scrollbar handle */
 .messages::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-primary) 100%);
 }
 
-/* ==========================================
-   MESSAGE BUBBLES
-   ========================================== */
+/* MESSAGE BUBBLES: Styles for both user and bot messages */
 
 .user,
 .bot {
-  margin-bottom: 16px;
-  padding: 14px 18px;
-  max-width: 75%;
-  line-height: 1.6;
+  margin-bottom: 16px;          /* Vertical gap between messages */
+  padding: 14px 18px;           /* Inner bubble spacing */
+  max-width: 75%;               /* Bubble won't exceed 75% of chat width */
+  line-height: 1.6;             /* Adds breathing room between lines of text */
+  /* Runs the slideIn animation defined below when the message appears */
   animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* Styling for the messages sent by the human user */
 .user {
-  background: var(--gradient-primary);
-  align-self: flex-end;
-  color: #fef8f4;
-  margin-left: auto;
+  background: var(--gradient-primary); /* Primary theme gradient */
+  align-self: flex-end;         /* Aligns bubble to the right side of the container */
+  color: #fef8f4;               /* White text */
+  margin-left: auto;            /* Standard way to right-align a flex item */
+  /* Unique "shard" shape: Slanted bottom-right edge */
   clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
-  border-left: 3px solid var(--color-primary);
+  border-left: 3px solid var(--color-primary); /* Left-side accent border */
 }
 
+/* Styling for the messages sent by the AI/Bot */
 .bot {
-  background: var(--gradient-secondary);
-  align-self: flex-start;
-  color: #fef8f4;
+  background: var(--gradient-secondary); /* Secondary theme gradient */
+  align-self: flex-start;       /* Aligns bubble to the left side */
+  color: #fef8f4;               /* White text */
+  /* Unique "shard" shape: Slanted top-left edge */
   clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%, 0 15%);
-  border-right: 3px solid var(--color-secondary);
+  border-right: 3px solid var(--color-secondary); /* Right-side accent border */
 }
 
+/* Entrance animation: Messages fade in and slide from the left */
 @keyframes slideIn {
   from {
-    opacity: 0;
-    transform: translateX(-30px);
+    opacity: 0;                 /* Starts transparent */
+    transform: translateX(-30px); /* Starts slightly to the left */
   }
   to {
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 1;                 /* Fades in to solid */
+    transform: translateX(0);   /* Slides into its final position */
   }
 }
 
-/* ==========================================
-   INPUT AREA
-   ========================================== */
+/* INPUT AREA: The text field and send button at the bottom */
 
 .input-area {
-  display: flex;
-  gap: 12px;
-  padding: 10px 0;        /* added */
+  display: flex;                /* Input and Button side-by-side */
+  gap: 12px;                    /* Gap between the input field and button */
+  padding: 10px 0;              /* Vertical spacing */
 }
 
-
+/* The actual text box where the user types */
 .input-area input {
-  flex-grow: 1;
-  padding: 14px 18px;
-  border: none;
-  border-bottom: 3px solid var(--border-color);
-  background: var(--bg-secondary);
-  color: var(--color-text);
-  transition: all 0.3s ease;
+  flex-grow: 1;                 /* Forces input to fill all available width */
+  padding: 14px 18px;           /* Large, comfortable typing area */
+  border: none;                 /* Removes default browser border */
+  border-bottom: 3px solid var(--border-color); /* Bottom-only border style */
+  background: var(--bg-secondary); /* Dark background */
+  color: var(--color-text);     /* White text */
+  transition: all 0.3s ease;    /* Animates focusing/clicking */
 }
 
+/* What happens when you click inside the text box */
 .input-area input:focus {
-  outline: none;
-  border-bottom-color: var(--color-primary);
-  background: var(--bg-white);
-  box-shadow: 0 4px 12px var(--shadow);
+  outline: none;                /* Removes the blue browser outline */
+  border-bottom-color: var(--color-primary); /* Changes bottom border to theme color */
+  background: var(--bg-white);  /* Slightly lightens background */
+  box-shadow: 0 4px 12px var(--shadow); /* Adds a "glow" shadow beneath it */
 }
 
+/* The Send button styling */
 .input-area button {
-  padding: 14px 28px;
-  background: var(--gradient-primary);
-  color: #fef8f4;
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  padding: 14px 28px;           /* Button size */
+  background: var(--gradient-primary); /* Primary theme gradient */
+  color: #fef8f4;               /* White text */
+  border: none;                 /* No border */
+  cursor: pointer;              /* Hand cursor on hover */
+  font-size: 1em;               /* Standard font size */
+  font-weight: 700;             /* Bold text */
+  text-transform: uppercase;    /* ALL CAPS text */
+  letter-spacing: 2px;          /* Spaced out letters */
 }
 
-/* ==========================================
-   MOBILE-FIRST CHATBOT FIX
-   ========================================== */
+/* MOBILE RESPONSIVENESS: Adjustments for screens smaller than 768px (Tablets and Phones) */
 @media screen and (max-width: 768px) {
   .chatbot {
-    flex-direction: row !important;   /* KEEP LEFT SIDEBAR */
-    height: 100dvh !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    overflow: hidden;
+    flex-direction: row !important; /* Forces Sidebar and Chat to stay side-by-side (important override) */
+    height: 100dvh !important;      /* Forces full screen height on mobile browsers */
+    max-width: 100% !important;     /* Uses full screen width */
+    margin: 0 !important;           /* Removes outer margins */
+    overflow: hidden;               /* Prevents page shaking/scrolling */
   }
 
-  /* LEFT SIDEBAR ON MOBILE */
+  /* Shrinks the sidebar on mobile to save space for the chat window */
   .chat-history {
-    width: 150px !important;
-    min-width: 150px !important;
+    width: 150px !important;        /* Narrower width */
+    min-width: 150px !important;    /* Prevents further shrinking */
     height: 100% !important;
     padding: 8px !important;
 
     overflow-y: auto !important;
-    overflow-x: hidden !important;
+    overflow-x: hidden !important;  /* No horizontal scrolling on mobile history */
 
     border-right: 2px solid var(--border-color);
     border-bottom: none !important;
@@ -326,24 +345,26 @@
     display: block !important;
   }
 
-  /* Hide headers to save space */
+  /* Hides headers and timestamps on mobile to maximize room for conversation titles */
   .chat-history h3,
   .chat-history h4,
   .chat-history .timestamp {
     display: none !important;
   }
 
+  /* Displays the list as a block on mobile */
   .chat-history ul {
     display: block !important;
   }
 
+  /* Shrinks chat titles font size and padding for smaller screen */
   .chat-history li {
     padding: 8px 10px !important;
     font-size: 0.8em;
-    white-space: normal !important;
+    white-space: normal !important; /* Allows long titles to wrap to a second line */
   }
 
-  /* CHAT WINDOW */
+  /* Adjusts the chat window padding for mobile */
   .chat-window {
     flex-grow: 1;
     height: 100% !important;
@@ -355,12 +376,14 @@
     overflow-y: auto !important;
   }
 
+  /* Makes message bubbles wider on mobile so text isn't too narrow */
   .user,
   .bot {
     max-width: 90% !important;
     font-size: 0.95em;
   }
 
+  /* Slightly tighter input area for smaller screens */
   .input-area {
     padding: 8px 0 !important;
     gap: 8px !important;
