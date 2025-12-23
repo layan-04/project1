@@ -3,9 +3,9 @@
    ========================================== */
 
 .chatbot {
-  display: flex;
-  height: 100vh;
-  height: 80dvh;          /* added */
+  display: flex; /*Puts the sidebar and the chat window side-by-side.*/
+  height: 100vh; /*Uses "Dynamic Viewport Height," which is great for mobile browsers*/
+  /*height: 80dvh; */         
   max-width: 1000px;
   margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
